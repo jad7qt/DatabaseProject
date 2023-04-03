@@ -2,6 +2,7 @@
 <link rel="stylesheet" href = "homepage.css" > 
 </head>
 
+<h1> ContractorConnector</h1>
 
 <nav role="navigation">
     <div id="menuToggle">
@@ -11,6 +12,8 @@
       -->
       <input type="checkbox" />
       
+      
+
       <!--
       Some spans to act as a hamburger.
       
