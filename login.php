@@ -1,3 +1,17 @@
+<?php 
+require("connect-db.php");
+require("customer-db.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Login"))
+    {
+        
+    }
+    
+}
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -30,7 +44,7 @@
 
         <input type="password" name="password" placeholder="Password"><br> 
 
-        <button type="submit">Login</button>
+        <button type="submit" value="Login">Login</button>
 
      </form>
 
