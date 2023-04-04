@@ -1,6 +1,17 @@
 <?php 
 require("connect-db.php");
+require("customer-db.php");
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Customer"))
+    {
+        addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
+        // TODO: Implement adding the actual Customer information
+        //addCustomer($_POST['username'], $_POST['st'], $_POST['city'], $_POST['state'], $_POST['zip']);
+    }
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +52,19 @@ require("connect-db.php");
             Last Name:
             <input type="text" class="form-control" name="lname" required/>
         </div>
-        <input type="submit" class="btn btn-primary" name="actionBtn" value="Create Account" title="class to add Customer/User" />
+        Address:
+        <div class="row mb-3 mx-3">
+            Street:
+            <input type="text" class="form-control" name="st" required/>
+            City:
+            <input type="text" class="form-control" name="city" required/>
+            State:
+            <input type="text" class="form-control" name="state" required/>
+            Zip:
+            <input type="text" class="form-control" name="zip" required/>
+        </div>
+        <input type="hidden" name="type" value="Customer" />
+        <input type="submit" class="btn btn-primary" name="actionBtn" value="Create Customer" title="class to add Customer/User" />
     </form>
 </div>
 </body>
