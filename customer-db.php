@@ -14,7 +14,7 @@ function addUser($username, $password, $type, $fname, $lname)
 
 }
 
-function addCustomer($username, $st, $city, $state, $zip)
+function addCustomer($username, $street, $city, $state, $zip)
 {
     global $db;
     $query1 = "SELECT UserID FROM User WHERE Username=:username";
@@ -25,9 +25,9 @@ function addCustomer($username, $st, $city, $state, $zip)
     $statement1->closeCursor();
 
     $query2 = "INSERT INTO Customer VALUES(:usersID, :street, :city, :state, :zip)";
-    $statement2 = $db->prepare($query);
+    $statement2 = $db->prepare($query2);
     $statement2->bindValue(':usersID', $usersID[0]["UserID"]);
-    $statement2->bindValue(':street', $st);
+    $statement2->bindValue(':street', $street);
     $statement2->bindValue(':city', $city);
     $statement2->bindValue(':state', $state);
     $statement2->bindValue(':zip', $zip);
