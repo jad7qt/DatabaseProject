@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require("connect-db.php");
-//require("login-db.php");
 
 if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Login") ) {
 
@@ -12,12 +11,8 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
        $data = htmlspecialchars($data);
        return $data;
     }
-
     $uname = validate($_POST['uname']);
-    var_dump($uname);
-
     $pass = validate($_POST['password']);
-    var_dump($pass);
 
     if (empty($uname)) {
 
@@ -42,7 +37,6 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
         $result = $statement->fetchAll();
         $statement->closeCursor();
 
-        var_dump($result);
         if ($result[0]['Username'] === $uname && $result[0]['Password'] === $pass) {
 
             echo "Logged in!";
@@ -64,13 +58,8 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             exit();
 
         }
-
-        
-
     }
-
 }
-
 
 
 ?>
