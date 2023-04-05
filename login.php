@@ -1,15 +1,78 @@
 <?php 
+session_start();
 require("connect-db.php");
-require("customer-db.php");
+//require("login-db.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Login"))
-    {
-        
+if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Login") ) {
+
+    function validate($data){
+
+       $data = trim($data);
+       $data = stripslashes($data);
+       $data = htmlspecialchars($data);
+       return $data;
     }
-    
+
+    $uname = validate($_POST['uname']);
+    var_dump($uname);
+
+    $pass = validate($_POST['password']);
+    var_dump($pass);
+
+    if (empty($uname)) {
+
+        header("Location: login.php?error=User Name is required");
+
+        exit();
+
+    }else if(empty($pass)){
+
+        header("Location: login.php?error=Password is required");
+
+        exit();
+
+    }else{
+
+        global $db;
+        $query1 = "SELECT * FROM User WHERE Username=:username AND Password=:pass";
+        $statement = $db->prepare($query1);
+        $statement->bindValue(':username', $uname);
+        $statement->bindValue(':pass', $pass);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+
+        var_dump($result);
+        if ($result[0]['Username'] === $uname && $result[0]['Password'] === $pass) {
+
+            echo "Logged in!";
+
+            $_SESSION['Username'] = $result[0]['Username'];
+
+            $_SESSION['FirstName'] = $result[0]['FirstName'];
+
+            $_SESSION['UserID'] = $result[0]['UserID'];
+
+            header("Location: homepage.php");
+
+            exit();
+
+        }else{
+
+            header("Location: login.php?error=Incorect User name or password");
+
+            exit();
+
+        }
+
+        
+
+    }
+
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         <input type="password" name="password" placeholder="Password"><br> 
 
-        <button type="submit" value="Login">Login</button>
+        <button type="submit"  name="actionBtn" value="Login">Login</button>
 
      </form>
 
