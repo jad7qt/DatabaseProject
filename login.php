@@ -46,6 +46,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             $_SESSION['FirstName'] = $result[0]['FirstName'];
 
             $_SESSION['UserID'] = $result[0]['UserID'];
+            $_SESSION['Type'] = $result[0]['Type'];
 
             header("Location: homepage.php");
 
