@@ -30,7 +30,7 @@
       Too bad the menu has to be inside of the button
       but hey, it's pure CSS magic.
       -->
-      <ul id="menu">
+      <ul id="menu" class="damenu">
         <a href="#"><li>Home</li></a>
         <a href="#"><li>About</li></a>
         <a href="#"><li>Info</li></a>
