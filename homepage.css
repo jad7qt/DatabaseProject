@@ -120,8 +120,8 @@ body
   padding: 50px;
   padding-top: 125px;
 
-  border-right: 10px solid;
-  border-image: linear-gradient(45deg,red,blue) 10;
+  border-right: 5px solid;
+  border-image: linear-gradient(45deg,red,blue) 5;
   
   background: #1f1f1f;
   list-style-type: none;
@@ -159,10 +159,26 @@ body
 }
 
 
-.logo{
-  margin: 10;
+#header{
+  position: relative;
+  padding-bottom: 40;
+  padding-left: 30;
+  padding-top: 40;
+
+  border-bottom: 5px solid;
+  border-image: linear-gradient(45deg,red,blue) 10;
 }
 
+.logo{
+  position: relative;
+  
+}
+
+.btn-logout{
+  position: relative;
+  top: 20px;
+  right: 150px;
+}
 
 @media (width <= 600px){
   

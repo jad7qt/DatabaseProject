@@ -2,8 +2,10 @@
 <link rel="stylesheet" href = "homepage.css" > 
 </head>
 
-<h1 class="logo"> ContractorConnector</h1>
-
+<div id="header">
+  <h1 class="logo"> ContractorConnector</h1>
+  <button class="btn-logout" name="logout">
+</div>
 <nav role="navigation">
     <div id="menuToggle">
       <!--
