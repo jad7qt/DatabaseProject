@@ -35,4 +35,10 @@ function addCustomer($username, $street, $city, $state, $zip)
     $statement2->closeCursor();
 }
 
+function addTechnician()
+{
+    global $db;
+    $query = "";
+}
+
 ?>
