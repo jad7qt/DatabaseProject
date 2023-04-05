@@ -63,42 +63,48 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
 ?>
 
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
     <link rel="stylesheet" type="text/css" href="style.css">
-
 </head>
-
 <body>
+    <header>
+        <div class="container">
+            <h1>ContractorConnections</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-     <form action="login.php" method="post">
+    <main>
+        <form action="login.php" method="post">
+            <h2>LOGIN</h2>
+            <?php if (isset($_GET['error'])) { ?>
+                <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
+            <label>User Name</label>
+            <input type="text" name="uname" placeholder="User Name"><br>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password"><br>
+            <button type="submit" name="actionBtn" value="Login">Login</button>
+        </form>
+    </main>
 
-        <h2>LOGIN</h2>
-
-        <?php if (isset($_GET['error'])) { ?>
-
-            <p class="error"><?php echo $_GET['error']; ?></p>
-
-        <?php } ?>
-
-        <label>User Name</label>
-
-        <input type="text" name="uname" placeholder="User Name"><br>
-
-        <label>Password</label>
-
-        <input type="password" name="password" placeholder="Password"><br> 
-
-        <button type="submit"  name="actionBtn" value="Login">Login</button>
-
-     </form>
-
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 My Website. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
-
 </html>
 
