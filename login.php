@@ -77,7 +77,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             <h1>ContractorConnections</h1>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <!-- <li><a href="#">Home</a></li> -->
                     <li><a href="#">About</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Contact</a></li>
@@ -102,7 +102,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 My Website. All Rights Reserved.</p>
+            <p>&copy; 2023 ContractorConnections. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
