@@ -1,194 +1,102 @@
-body
-{
-  margin: 0;
-  padding: 0;
-  
-  /* make it look decent enough */
-  background: #232323;
-  color: #cdcdcd;
-  font-family: "Avenir Next", "Avenir", sans-serif;
+@import "compass";
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300);
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+
+*, *:before, *:after {
+  padding:0;
+  margin:0;
 }
 
-#menuToggle
-{
-  display: block;
-  position: relative;
-  top: 100px;
-  left: 50px;
-  
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+body {
+  overflow-x: hidden;
+  color: #fff;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
 }
 
-#menuToggle a
-{
-  text-decoration: none;
-  color: #232323;
-  
-  transition: color 0.3s ease;
+body, html {
+  width:100%;
+  height:100%;
 }
 
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
+h1 {
+  font-family: 'Lobster', cursive;
+  font-weight:300;
+  font-size: 2.5em;
+}
+
+.sidebar-btn {
   position: absolute;
-  top: -7px;
-  left: -5px;
-  
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="sidebar-btn"] {
+  position: fixed;
+  left: 15px; 
+  top: 15px;
+  z-index: 2;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
-  
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  
-  -webkit-touch-callout: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect style='fill:rgb(255,255,255)' width='15' height='3'/><rect style='fill:rgb(255,255,255)' y='8' width='20' height='3'/><rect style='fill:rgb(255,255,255)' y='16' width='25' height='3'/></svg>");
+  background-size: contain;
 }
 
-/*
- * Just a quick hamburger -----
- */
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
+.sidebar-btn + label, .content {
+  transition: left 0.1s;
+}
+
+.sidebar-btn:checked + label {
+  left: 245px;
+}
+
+.sidebar-btn:checked ~ .content {
+  left: 230px;
+}
+
+.sidebar {
+  list-style-type: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #232323;
   
-  background: #cdcdcd;
-  border-radius: 3px;
-  
-  z-index: 1;
-  
-  transform-origin: 4px 0px;
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-}
-
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
-}
-
-/* 
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: white;
-}
-
-/*
- * But let's hide the middle one.
- */
- #menuToggle input:checked ~ span:nth-last-child(3)
- {
-   opacity: 0;
-   transform: rotate(0deg) scale(0.2, 0.2);
- }
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu
-{
-  position: absolute;
-  width: 150px;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-
   border-right: 5px solid;
   border-image: linear-gradient(45deg,red,blue) 5;
-  
-  background: #1f1f1f;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-  
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
-  color: white;
+.sidebar li,h3{
+  background-color: #232323;
+  padding:1em;
+  color: #fff;
+  width:300px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight:400;  
+  @include transition-property(all);
+  @include transition-duration(50ms);
+  @include transition-timing-function(ease-in);
+
 }
 
-@keyframes damenu{
-  from{top:1000px;}
-  to{top:0px;}
+.sidebar li:hover{
+  background-color: darken(#c0392b, 10);
+  background-color: black;
 }
 
-#menu li:hover
-{
-  padding: 10px 0;
-  font-size: 22px;
-  color: blue;
-}
-
-
-
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-  transform: none;
-}
-
-
-#header{
+.content {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #34495e;
   position: relative;
-  padding-bottom: 40;
-  padding-left: 30;
-  padding-top: 40;
-
-  border-bottom: 5px solid;
-  border-image: linear-gradient(45deg,red,blue) 10;
-}
-
-.logo{
-  position: relative;
-  
-}
-
-.btn-logout{
-  position: relative;
-  top: 20px;
-  right: 150px;
-}
-
-@media (width <= 600px){
-  
-}
-
-@media (width > 600px){
-  
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;  
+  padding: 4em;
 }
