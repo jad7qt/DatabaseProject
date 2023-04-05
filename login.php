@@ -40,11 +40,8 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
         if ($result[0]['Username'] === $uname && $result[0]['Password'] === $pass) {
 
             echo "Logged in!";
-
             $_SESSION['Username'] = $result[0]['Username'];
-
             $_SESSION['FirstName'] = $result[0]['FirstName'];
-
             $_SESSION['UserID'] = $result[0]['UserID'];
             $_SESSION['Type'] = $result[0]['Type'];
 
