@@ -2,7 +2,7 @@
 <link rel="stylesheet" href = "homepage.css" > 
 </head>
 
-<h1> ContractorConnector</h1>
+<h1 class="logo"> ContractorConnector</h1>
 
 <nav role="navigation">
     <div id="menuToggle">
