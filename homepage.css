@@ -13,7 +13,7 @@ body
 {
   display: block;
   position: relative;
-  top: 50px;
+  top: 100px;
   left: 50px;
   
   z-index: 1;
@@ -29,12 +29,6 @@ body
   
   transition: color 0.3s ease;
 }
-
-#menuToggle a:hover
-{
-  color: tomato;
-}
-
 
 #menuToggle input
 {
@@ -54,7 +48,7 @@ body
 }
 
 /*
- * Just a quick hamburger
+ * Just a quick hamburger -----
  */
 #menuToggle span
 {
@@ -94,17 +88,17 @@ body
 {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
+  background: white;
 }
 
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
+ #menuToggle input:checked ~ span:nth-last-child(3)
+ {
+   opacity: 0;
+   transform: rotate(0deg) scale(0.2, 0.2);
+ }
 
 /*
  * Ohyeah and the last one should go the other direction
@@ -121,12 +115,15 @@ body
 #menu
 {
   position: absolute;
-  width: 300px;
+  width: 150px;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
+
+  border-right: 10px solid;
+  border-image: linear-gradient(45deg,red,blue) 10;
   
-  background: #ededed;
+  background: #1f1f1f;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
@@ -141,7 +138,17 @@ body
 {
   padding: 10px 0;
   font-size: 22px;
+  color: white;
 }
+
+#menu li:hover
+{
+  padding: 10px 0;
+  font-size: 22px;
+  color: blue;
+}
+
+
 
 /*
  * And let's slide it in from the left
@@ -149,4 +156,18 @@ body
 #menuToggle input:checked ~ ul
 {
   transform: none;
+}
+
+
+.logo{
+  margin: 10;
+}
+
+
+@media (width <= 600px){
+  
+}
+
+@media (width > 600px){
+  
 }
