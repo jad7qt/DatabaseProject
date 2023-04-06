@@ -49,7 +49,7 @@ session_start();
       <a href="#"><li>Projects</li></a>
       <a href="#"><li>Payments</li></a>
       <a href="#"><li>Profile</li></a>
-      <a href="#"><li>Contact</li></a>
+      <a href="#"><li>Contact Admin</li></a>
     </ul>
   </div>
 </nav>
