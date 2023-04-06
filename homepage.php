@@ -14,9 +14,14 @@ session_start();
       <img src="images/logo_blank.png" alt="Logo" class="logo">
       <h1 class="site-title">ContractorConnector</h1>
     </div>
+    <?php
+      if(isset($_SESSION['UserID'])){
+    ?>
     <h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?></h2>
+    <?php
+      }
+    ?>
     <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-      <!-- <a href="logout.php">Logout</a> -->
   </header>
 
 
