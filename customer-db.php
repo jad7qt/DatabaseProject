@@ -35,10 +35,22 @@ function addCustomer($username, $street, $city, $state, $zip)
     $statement2->closeCursor();
 }
 
-function addTechnician()
+function addTechnician($username, $OccupationType)
 {
     global $db;
-    $query = "";
+    $query1 = "SELECT UserID FROM User WHERE Username=:username";
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':username', $username);
+    $statement1->execute();    
+    $usersID = $statement1->fetchAll();
+    $statement1->closeCursor();
+
+    $query2 = "INSERT INTO Technician(UserID, OccupationType) VALUES(:usersID, :OccupationType)";
+    $statement2 = $db->prepare($query2);
+    $statement2->bindValue(':usersID', $usersID[0]["UserID"]);
+    $statement2->bindValue(':OccupationType', $OccupationType);
+    $statement2->execute();
+    $statement2->closeCursor();
 }
 
 ?>

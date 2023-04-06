@@ -4,10 +4,11 @@ require("customer-db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Customer"))
+    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Technician"))
     {
         addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
-        addCustomer($_POST['username'], $_POST['st'], $_POST['city'], $_POST['state'], $_POST['zip']);
+        addTechnician($_POST['username'], $_POST['OccupationType']);
+        header("Location: homepage.php");
     }
     
 }
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <body>
 <div class="container">
-<form name="mainForm" action="addCustomer.php" method="post">
+<form name="mainForm" action="addTechnician.php" method="post">
         <div class="row mb-3 mx-3">
             Username:
             <input type="text" class="form-control" name="username" required />
@@ -52,19 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             Last Name:
             <input type="text" class="form-control" name="lname" required/>
         </div>
-        Address:
         <div class="row mb-3 mx-3">
-            Street:
-            <input type="text" class="form-control" name="st" required/>
-            City:
-            <input type="text" class="form-control" name="city" required/>
-            State:
-            <input type="text" class="form-control" name="state" required/>
-            Zip:
-            <input type="text" class="form-control" name="zip" required/>
+            OccupationType:
+            <input type="text" class="form-control" name="OccupationType" required/>
         </div>
-        <input type="hidden" name="type" value="Customer" />
-        <input type="submit" class="btn btn-primary" name="actionBtn" value="Create Customer" title="class to add Customer/User" />
+        <input type="hidden" name="type" value="Technician" />
+        <input type="submit" class="btn btn-primary" name="actionBtn" value="Create Technician" title="class to add Technician/User" />
     </form>
 </div>
 </body>
