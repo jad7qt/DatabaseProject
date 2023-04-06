@@ -80,7 +80,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
                     <!-- <li><a href="#">Home</a></li> -->
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
