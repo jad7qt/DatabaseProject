@@ -97,6 +97,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             <label>Password</label>
             <input type="password" name="password" placeholder="Password"><br>
             <button type="submit" name="actionBtn" value="Login">Login</button>
+            <button type="button" onclick="window.location.href='addCustomer.php';" name="actionBtn" value="SignUp">SignUp</button>
         </form>
     </main>
 
