@@ -8,7 +8,7 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContractorConnector</title>
-  <link rel="stylesheet" href="dannyTest.css">
+  <link rel="stylesheet" href="css/dannyTest.css">
 </head>
   <header>
     <div class="logo-container">

@@ -151,3 +151,8 @@ footer p {
   margin: 0;
   font-size: 16px;
 }
+
+.btn-back{
+  background-color: red;
+  align-self: center;
+}
