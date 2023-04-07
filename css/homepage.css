@@ -236,7 +236,9 @@ transform: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120vh;
+  height: 250px;
+
+
 }
 
 /* Style for the search bar form */
@@ -275,4 +277,3 @@ label[for="occupation-type"] {
 }
 
 /* End Search Bar */
-
