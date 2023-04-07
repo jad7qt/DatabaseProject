@@ -9,16 +9,18 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContractorConnector</title>
-  <link rel="stylesheet" href="dannyTest.css">
+  <link rel="stylesheet" href="css/homepage.css">
 </head>
-  <header>
+<header>
     <div class="logo-container">
       <img src="images/logo_blank.png" alt="Logo" class="logo">
       <h1 class="site-title">ContractorConnector</h1>
     </div>
     <h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?></h2>
     <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-  </header>
+</header>
+
+
 
 
 
