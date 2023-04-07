@@ -20,10 +20,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
 </header>
 
-
-
-
-
 <!--HAMBURGER BELOW -->
 <nav role="navigation">
   <div id="menuToggle">
@@ -48,7 +44,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     but hey, it's pure CSS magic.
     -->
     <ul id="menu">
-      <a href="#"><li>Projects</li></a>
+      <a href="homepage.php"><li>Projects</li></a>
       <a href="#"><li>Payments</li></a>
       <a href="#"><li>Profile</li></a>
       <a href="#"><li>Contact</li></a>
@@ -56,11 +52,19 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   </div>
 </nav>
 
+<div class="search-container">
+    <form action="searchResults.php" method="POST">
+      <label for="occupation-type">Search for a Local Technician</label>
+      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter occupation type">
+      <button type="submit">Search</button>
+    </form>
+</div>
+
 </html>
 
 <?php
-  }else{
+  } else {
     header("Location: login.php");
-     exit();
+    exit();
   }
 ?>
