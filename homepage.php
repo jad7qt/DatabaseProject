@@ -1,6 +1,8 @@
 <?php 
 session_start();
- ?>
+
+if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +18,8 @@ session_start();
     </div>
     <h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?></h2>
     <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-      <!-- <a href="logout.php">Logout</a> -->
 </header>
+
 
 
 
@@ -56,3 +58,9 @@ session_start();
 
 </html>
 
+<?php
+  }else{
+    header("Location: login.php");
+     exit();
+  }
+?>

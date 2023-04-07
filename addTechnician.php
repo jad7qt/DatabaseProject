@@ -2,7 +2,7 @@
 require("connect-db.php");
 require("customer-db.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Administrator')
 {
     if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Technician"))
     {
@@ -14,7 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 ?>
 
+<?php 
+session_start();
+if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Type'] == "Administrator") {
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,3 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </div>
 </body>
 </html>
+
+<?php 
+}else if(isset($_SESSION['UserID']) && $_SESSION['Type'] != 'Administrator'){
+    header("Location: homepage.php");
+}else{
+     header("Location: login.php");
+     exit();
+}
+
+ ?>
