@@ -1,8 +1,9 @@
 <?php 
+session_start();
 require("connect-db.php");
 require("customer-db.php");
 
-if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || $_SESSION['Type'] == 'Administrator')
+if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || (isset($_SESSION['Type']) && $_SESSION['Type'] == 'Administrator'))
 {
     if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Customer"))
     {
@@ -14,7 +15,6 @@ if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !is
 ?>
 
 <?php 
-session_start();
 if ( (!isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || $_SESSION['Type'] == 'Administrator') {
 
 ?>
