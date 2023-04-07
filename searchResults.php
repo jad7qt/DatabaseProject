@@ -21,10 +21,20 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   // Search for technicians
     if (isset($_POST['occupation-type'])) {
         $occupation_type = $_POST['occupation-type'];
-        $stmt = $db->prepare("SELECT * FROM Technician WHERE OccupationType LIKE :occupation_type");
-        $stmt->bindValue(':occupation_type', "%$occupation_type%", PDO::PARAM_STR);
+        $stmt = $db->prepare("SELECT Technician.userID, CONCAT(User.firstName, ' ', User.lastName) as Technician_Name, Technician.OccupationType, R.Avg_Rating as Rating
+        FROM Technician
+        INNER JOIN User
+        ON Technician.userID = User.userID
+        INNER JOIN(
+            SELECT Ratings.technicianID, AVG(Ratings.rating) as Avg_Rating
+            FROM Ratings
+            GROUP BY Ratings.technicianID) as R
+        ON Technician.userID = R.technicianID
+        WHERE Technician.OccupationType = :occupation_type
+        ORDER BY R.Avg_Rating DESC");
+        $stmt->bindValue(':occupation_type', $occupation_type);
         $stmt->execute();
-        $Technician = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $Technician = $stmt->fetchAll();
     }
 
  // Search for users
@@ -103,7 +113,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 					<?php $mergedArray = array_merge($Technician, $User);
                     foreach ($mergedArray as $item): ?>
 						<tr>
-                            <td><?php echo isset($item['FirstName']) ? $item['FirstName'] : 'N/A'; ?></td>
+                            <td><?php echo $item['Technician_Name']; ?></td>
 							<td><?php echo $item['OccupationType']; ?></td>
                             <td><?php echo $item['Rating']; ?></td>
 						</tr>
