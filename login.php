@@ -69,7 +69,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
     <header>
@@ -77,10 +77,10 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             <h1>ContractorConnections</h1>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <!-- <li><a href="#">Home</a></li> -->
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -96,13 +96,14 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
             <input type="text" name="uname" placeholder="User Name"><br>
             <label>Password</label>
             <input type="password" name="password" placeholder="Password"><br>
-            <button type="submit" name="actionBtn" value="Login">Login</button>
+            <button id="btnlogin" type="submit" name="actionBtn" value="Login">Login</button>
+            <button type="button" onclick="window.location.href='addCustomer.php';" name="actionBtn" value="SignUp">SignUp</button>
         </form>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 My Website. All Rights Reserved.</p>
+            <p>&copy; 2023 ContractorConnections. All Rights Reserved.</p>
         </div>
     </footer>
 </body>

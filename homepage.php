@@ -1,23 +1,70 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
+  ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
-  <link rel="stylesheet" href="homepage.css">
+  <title>ContractorConnector</title>
+  <link rel="stylesheet" href="css/homepage.css">
 </head>
-
-<nav>
-    <ul class="sidebar">
-      <h3 class="logo">ContractorConnector</h3>
-      <li>Home</li>
-      <li>Profile</li>
-      <li>Info</li>
-      <button class="logout-button">Logout</button>
-    </ul>
-
-    <input type="checkbox" id="sidebar-btn" class="sidebar-btn" checked/>
-    <label for="sidebar-btn"></label>
-
-    <div class="content">
-      <h1 class="h1BodyText">Welcome User</h1>
+<header>
+    <div class="logo-container">
+      <img src="images/logo_blank.png" alt="Logo" class="logo">
+      <h1 class="site-title">ContractorConnector</h1>
     </div>
-  </nav>
+    <h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?></h2>
+    <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
+</header>
+
+<!--HAMBURGER BELOW -->
+<nav role="navigation">
+  <div id="menuToggle">
+    <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+    <input type="checkbox" />
+    
+    <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+    <ul id="menu">
+      <a href="homepage.php"><li>Projects</li></a>
+      <a href="#"><li>Payments</li></a>
+      <a href="#"><li>Profile</li></a>
+      <a href="#"><li>Contact</li></a>
+    </ul>
+  </div>
+</nav>
+
+<div class="search-container">
+    <form action="searchResults.php" method="POST">
+      <label for="occupation-type">Search for a Local Technician</label>
+      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter occupation type">
+      <button type="submit">Search</button>
+    </form>
+</div>
+
+</html>
+
+<?php
+  } else {
+    header("Location: login.php");
+    exit();
+  }
+?>
