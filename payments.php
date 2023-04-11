@@ -35,46 +35,15 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 	<link rel="stylesheet" type="text/css" href="css/searchResults.css">
 </head>
 <body>
-	<header>
-		<div class="logo-container">
-      		<img src="images/logo_blank.png" alt="Logo" class="logo">
-      		<h1 class="site-title">ContractorConnector</h1>
-    	</div>
-    	<h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?></h2>
-    	<button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-	</header>
 
-	<!--HAMBURGER BELOW -->
-	<nav role="navigation">
-	  <div id="menuToggle">
-	    <!--
-	    A fake / hidden checkbox is used as click reciever,
-	    so you can use the :checked selector on it.
-	    -->
-	    <input type="checkbox" />
-	    
-	    <!--
-	    Some spans to act as a hamburger.
-	    
-	    They are acting like a real hamburger,
-	    not that McDonalds stuff.
-	    -->
-	    <span></span>
-	    <span></span>
-	    <span></span>
-	    
-	    <!--
-	    Too bad the menu has to be inside of the button
-	    but hey, it's pure CSS magic.
-	    -->
-	    <ul id="menu">
-	      <a href="homepage.php"><li>Projects</li></a>
-	      <a href="payments.php"><li>Payments</li></a>
-	      <a href="#"><li>Profile</li></a>
-	      <a href="#"><li>Contact</li></a>
-	    </ul>
-	  </div>
-	</nav>
+<!--HEADER-->
+<?php include('header.php'); ?>
+<!--HEADER-->
+
+<!--hamburger-->
+<?php include('hamburger.php'); ?>
+<!--hamburger-->
+
 
 	<div class="results-container">
 		<h3>Projects with Remaining Payments</h3>
