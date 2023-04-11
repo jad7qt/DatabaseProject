@@ -267,3 +267,8 @@ header {
 
   /* End Search Results */
 
+  #CCbutton{
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+

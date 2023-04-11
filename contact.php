@@ -14,7 +14,6 @@
             <img id="logo-image" src="images/logo_blank.png" alt="ContractorConnector" class="about-image">
             <p>
                 Feel free to reach us at info@ContractorConnector.com
-
             </p>
             <button class="btn-back" onclick="window.location.href='login.php';">Back to Login</button>
         </div>
