@@ -26,7 +26,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         INNER JOIN User
         ON Technician.userID = User.userID
         INNER JOIN(
-            SELECT Ratings.technicianID, AVG(Ratings.rating) as Avg_Rating
+            SELECT Ratings.technicianID, ROUND(AVG(Ratings.rating), 1) as Avg_Rating
             FROM Ratings
             GROUP BY Ratings.technicianID) as R
         ON Technician.userID = R.technicianID
@@ -91,7 +91,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 	    -->
 	    <ul id="menu">
 	      <a href="homepage.php"><li>Projects</li></a>
-	      <a href="#"><li>Payments</li></a>
+	      <a href="payments.php"><li>Payments</li></a>
 	      <a href="#"><li>Profile</li></a>
 	      <a href="#"><li>Contact</li></a>
 	    </ul>
@@ -104,7 +104,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 			<table>
 				<thead>
 					<tr>
-                        <th>Name</th>
+                        <th>Technician Name</th>
 						<th>Occupation Type</th>
                         <th>Rating</th>
 					</tr>
