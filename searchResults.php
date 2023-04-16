@@ -1,5 +1,7 @@
 <?php
+ob_start();
 session_start();
+
 
 if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   // Connect to database

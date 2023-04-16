@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 require("connect-db.php");
 
@@ -69,7 +70,7 @@ if (isset($_POST['uname']) && isset($_POST['password']) && !empty($_POST['action
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
     <header>
