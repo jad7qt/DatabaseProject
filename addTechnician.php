@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 require("connect-db.php");
 require("customer-db.php");
 
@@ -88,4 +89,5 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
      header("Location: login.php");
      exit();
 }
+ob_end_flush();
  ?>
