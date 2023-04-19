@@ -54,7 +54,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 				<thead>
 					<tr>
                         <th>Customer Name</th>
-						<th>Project Type</th>
+						            <th>Project Type</th>
                         <th>End Date</th>
                         <th>Remaining Payment</th>
 					</tr>

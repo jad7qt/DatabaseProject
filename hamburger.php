@@ -23,9 +23,9 @@
 	    but hey, it's pure CSS magic.
 	    -->
 	    <ul id="menu">
-	      <a href="homepage.php"><li>Projects</li></a>
+	      <a href="projects.php"><li>Projects</li></a>
 	      <a href="payments.php"><li>Payments</li></a>
-	      <a href="#"><li>Profile</li></a>
+	      <a href="profile.php"><li>Profile</li></a>
 	      <a href="#"><li>Contact</li></a>
 	    </ul>
 	  </div>
