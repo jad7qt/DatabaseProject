@@ -8,7 +8,7 @@ function searchTechByOcc($occupation_type)
     FROM Technician
     INNER JOIN User
     ON Technician.userID = User.userID
-    OUTER JOIN(
+    INNER JOIN(
         SELECT Ratings.technicianID, ROUND(AVG(Ratings.rating), 1) as Avg_Rating
         FROM Ratings
         GROUP BY Ratings.technicianID) as R
