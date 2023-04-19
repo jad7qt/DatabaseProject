@@ -7,22 +7,25 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("connect-db.php");
     require("customer-db.php");
     require("profile-db.php");
+    
+    $Address = array();
 
-    $Profile = array();
 
     //check user type to return correct query
     if ($_SESSION['Type'] == 'Administrator') {
         $Address = getAdminAddress($_SESSION['UserID']);
-        $Phones = getUserPhones($_SESSION['UserID']);
+
     }
+
     elseif ($_SESSION['Type'] == 'Technician') {
-        $Profile = getTechProfile($_SESSION['UserID']);
+        //$Address = getTechProfile($_SESSION['UserID']);
     }
 
     elseif ($_SESSION['Type'] == 'Customer') {
-        $Profile = getCustProfile($_SESSION['UserID']);
+        $Address = getCustAddress($_SESSION['UserID']);
     }
 
+    $Phones = getUserPhones($_SESSION['UserID']);
 ?>
 
 
@@ -33,6 +36,14 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 	<link rel="stylesheet" type="text/css" href="css/searchResults.css">
 </head>
 <body>
+	<header>
+		<div class="logo-container">
+      		<img src="images/logo_blank.png" alt="Logo" class="logo">
+      		<h1 class="site-title">ContractorConnector</h1>
+    	</div>
+    	<h2 class="welcome-message">Profile page for <?php echo $_SESSION['Type'], ' ', $_SESSION['FirstName']?> </h2>
+    	<button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
+	</header>
 
 <!--HEADER-->
 <?php include('header.php'); ?>
