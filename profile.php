@@ -7,12 +7,14 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("connect-db.php");
     require("customer-db.php");
     require("profile-db.php");
-
+    
     $Address = array();
+
 
     //check user type to return correct query
     if ($_SESSION['Type'] == 'Administrator') {
         $Address = getAdminAddress($_SESSION['UserID']);
+
     }
 
     elseif ($_SESSION['Type'] == 'Technician') {
