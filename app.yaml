@@ -1,0 +1,16 @@
+# Use the PHP 7.4 runtime
+runtime: php74
+
+entrypoint: serve index.php
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /images
+  static_dir: images
+
+- url: /.*
+  script: login.php
+
+# If your main page is index.php, comment the above entrypoint setting 

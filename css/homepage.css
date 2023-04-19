@@ -236,7 +236,9 @@ transform: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120vh;
+  height: 250px;
+
+
 }
 
 /* Style for the search bar form */
@@ -276,3 +278,8 @@ label[for="occupation-type"] {
 
 /* End Search Bar */
 
+
+#CCbutton{
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
