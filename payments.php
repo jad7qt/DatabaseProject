@@ -9,6 +9,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 
   // Display Payments
 
+	//admin outstanding payments query
     $stmt = $db->prepare("SELECT CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Project.JobType, 
     Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment
     FROM Invoice
@@ -22,7 +23,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     ON Project.ProjectID = Invoice.ProjectID
     INNER JOIN User
     ON Project.CustomerID = User.UserID
-    HAVING Remaining_Payment > 0");
+    HAVING Remaining_Payment > 0
+	ORDER BY Project.EndDate");
     $stmt->execute();
     $Payments = $stmt->fetchAll();
 
