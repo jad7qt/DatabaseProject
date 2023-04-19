@@ -33,14 +33,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 	<link rel="stylesheet" type="text/css" href="css/searchResults.css">
 </head>
 <body>
-	<header>
-		<div class="logo-container">
-      		<img src="images/logo_blank.png" alt="Logo" class="logo">
-      		<h1 class="site-title">ContractorConnector</h1>
-    	</div>
-    	<h2 class="welcome-message">Profile page for <?php echo $_SESSION['Type'], ' ', $_SESSION['FirstName']?> </h2>
-    	<button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-	</header>
 
 <!--HEADER-->
 <?php include('header.php'); ?>
