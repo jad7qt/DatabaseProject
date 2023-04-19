@@ -8,21 +8,22 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("customer-db.php");
     require("profile-db.php");
 
-    $Profile = array();
+    $Address = array();
 
     //check user type to return correct query
     if ($_SESSION['Type'] == 'Administrator') {
         $Address = getAdminAddress($_SESSION['UserID']);
-        $Phones = getUserPhones($_SESSION['UserID']);
     }
+
     elseif ($_SESSION['Type'] == 'Technician') {
-        $Profile = getTechProfile($_SESSION['UserID']);
+        //$Address = getTechProfile($_SESSION['UserID']);
     }
 
     elseif ($_SESSION['Type'] == 'Customer') {
-        $Profile = getCustProfile($_SESSION['UserID']);
+        $Address = getCustAddress($_SESSION['UserID']);
     }
 
+    $Phones = getUserPhones($_SESSION['UserID']);
 ?>
 
 

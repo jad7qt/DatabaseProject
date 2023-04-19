@@ -18,7 +18,19 @@ function getTechProfile($userID){
 
 }
 
-function getCustProfile($userID){
+function getCustAddress($userID){
+    global $db;
+    $query1 = "SELECT CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Address
+    FROM Customer
+    WHERE UserID = :custID";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':custID', $userID);
+    $statement1->execute();    
+    $Address = $statement1->fetchAll();
+    $statement1->closeCursor();
+
+    return $Address;
 
 }
 

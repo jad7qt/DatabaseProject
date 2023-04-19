@@ -1,7 +1,7 @@
 <?php
 function adminMasterTable(){
     global $db;
-    $query1 = "SELECT Project.*, CONCAT(Project.Street, ' ', Project.City, ', ', Project.State, ' ', Project.Zip) as Project_Address,
+    $query1 = "SELECT Project.*, CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address,
     CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, PhoneNumber.number as CustomerPhone, Tech.Name as Technician_Name
     FROM Project
     INNER JOIN (
@@ -13,6 +13,8 @@ function adminMasterTable(){
     ON Project.customerID = User.UserID
     INNER JOIN PhoneNumber
     ON PhoneNumber.userID = Project.customerID
+    INNER JOIN Customer
+    ON Customer.UserID = Project.CustomerID
     WHERE PhoneNumber.type = 'mobile' ";
     $statement1 = $db->prepare($query1);
     $statement1->execute();    
@@ -24,13 +26,15 @@ function adminMasterTable(){
 function techProjTable($userID){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, 
-    CONCAT(Project.Street, ' ', Project.City, ', ', Project.State, ' ', Project.Zip) as Project_Address, 
+    CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address, 
     PhoneNumber.number as CustomerPhone
     FROM Project
     INNER JOIN User
     ON Project.customerID = User.UserID
     INNER JOIN PhoneNumber
     ON PhoneNumber.userID = Project.customerID
+    INNER JOIN Customer
+    ON Customer.UserID = Project.CustomerID
     WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :userID
     ORDER BY Project.startDate; ";
 
@@ -46,10 +50,12 @@ function techProjTable($userID){
 function custProjTable($userID){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Technician_Name, 
-    CONCAT(Project.Street, ' ', Project.City, ', ', Project.State, ' ', Project.Zip) as Project_Address
+    CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address
     FROM Project
     INNER JOIN User
     ON Project.TechnicianID = User.UserID
+    INNER JOIN Customer
+    ON Customer.UserID = Project.CustomerID
     WHERE Project.customerID = :custID
     ORDER BY Project.startDate";
 
