@@ -16,8 +16,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
       <img src="images/logo_blank.png" alt="Logo" class="logo">
       <h1 class="site-title">ContractorConnector</h1>
     </div>
-    <h2 class="welcome-message">Welcome <?php echo $_SESSION['FirstName']?>
-    User Type: <?php echo $_SESSION['Type']?>
+    <h2 class="welcome-message">Welcome <?php echo $_SESSION['Type'], ' ',  $_SESSION['FirstName']?>
   </h2>
     <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
 </header>
@@ -46,7 +45,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     but hey, it's pure CSS magic.
     -->
     <ul id="menu">
-      <a href="homepage.php"><li>Projects</li></a>
+      <a href="projects.php"><li>Projects</li></a>
       <a href="payments.php"><li>Payments</li></a>
       <a href="#"><li>Profile</li></a>
       <a href="#"><li>Contact</li></a>
