@@ -14,8 +14,35 @@ function getAdminAddress($userID){
     return $Address;
 }
 
-function getTechProfile($userID){
+function getTechRatings($userID){
+    global $db;
+    $query1 = "SELECT Rating, Comment
+    FROM Ratings
+    WHERE TechnicianID = :techID";
 
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':techID', $userID);
+    $statement1->execute();    
+    $Ratings = $statement1->fetchAll();
+    $statement1->closeCursor();
+
+    return $Ratings;
+}
+
+function getAvgRating($userID){
+    global $db;
+    $query1 = "SELECT TechnicianID, ROUND(AVG(Rating), 1) as AVGRating
+    FROM Ratings
+    WHERE TechnicianID = :techID
+    GROUP BY TechnicianID;";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':techID', $userID);
+    $statement1->execute();    
+    $Ratings = $statement1->fetchAll();
+    $statement1->closeCursor();
+
+    return $Ratings;
 }
 
 function getCustAddress($userID){
