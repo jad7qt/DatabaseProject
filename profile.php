@@ -9,6 +9,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("profile-db.php");
     
     $Address = array();
+    $Ratings = array();
+    $AVGRating = array();
 
 
     //check user type to return correct query
@@ -18,7 +20,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     }
 
     elseif ($_SESSION['Type'] == 'Technician') {
-        //$Address = getTechProfile($_SESSION['UserID']);
+        $Ratings = getTechRatings($_SESSION['UserID']);
+        $AVGRating = getAvgRating($_SESSION['UserID']);
     }
 
     elseif ($_SESSION['Type'] == 'Customer') {
@@ -52,6 +55,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
+<?php if ($_SESSION['Type'] != 'Technician') ?>
 	<div class="results-container">
         <?php if (count($Address) > 0 ): ?>
             <table>
@@ -97,6 +101,51 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             <p>No Phone Numbers on file</p>
         <?php endif; ?>
     </div>
+
+<!-- Ratings for Technicians -->
+<?php if ($_SESSION['Type'] == 'Technician') ?>
+<div class="results-container">
+            <?php if (count($AVGRating) > 0): ?>
+                <table>
+                    <thead> Technician Avg. Rating</thead>
+                    <tbody>
+                        <?php
+                        foreach ($AVGRating as $item): ?>
+                            <tr>
+                            <td><?php echo $item['AVGRating']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>  
+                  </table> 
+                <?php else: ?>
+                    <p>No Ratings on file</p>
+                <?php endif; ?> 
+    </div>
+
+    <div class="results-container">
+        <?php if (count($Ratings) > 0 ): ?>
+            <table>
+                <thead>
+                    <tr>                       
+                        <th>Rating</th>
+                        <th>Comment</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    foreach ($Ratings as $item): ?>
+                        <tr>
+                            <td><?php echo $item['Rating']; ?></td>
+                            <td><?php echo $item['Comment']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?> 
+            <p>No Ratings on file</p>
+        <?php endif; ?>
+        </div>
+
 
 </body>
 </html>
