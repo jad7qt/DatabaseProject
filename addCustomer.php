@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 require("connect-db.php");
 require("customer-db.php");
@@ -9,6 +10,8 @@ if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !is
     {
         addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
         addCustomer($_POST['username'], $_POST['st'], $_POST['city'], $_POST['state'], $_POST['zip']);
+        header("Location: login.php");
+        exit();
     }
     
 }
