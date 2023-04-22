@@ -63,6 +63,7 @@ TESTING: UserID = <?php echo $userID ?>
 TESTING: PageID = <?php echo $pageID ?> 
 
 <?php if ($pageType != 'Technician'){ ?>
+
 	<div class="results-container">
         <?php if (count($Address) > 0 ): ?>
             <table>
@@ -112,6 +113,7 @@ TESTING: PageID = <?php echo $pageID ?>
 
 <!-- Ratings for Technicians -->
 <?php if ($pageType == 'Technician'){ ?>
+
 <div class="results-container">
             <?php if (count($AVGRating) > 0): ?>
                 <table>
@@ -166,6 +168,7 @@ TESTING: PageID = <?php echo $pageID ?>
     <?php }?>
 
 
+
 </body>
 </html>
 
@@ -177,3 +180,4 @@ TESTING: PageID = <?php echo $pageID ?>
   }
   ob_end_flush();
 ?>
+

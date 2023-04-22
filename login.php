@@ -114,5 +114,6 @@ if (!isset($_SESSION['Username'])){
     header("Location: homepage.php");
     exit();
 }
+ob_end_flush();
 ?>
 
