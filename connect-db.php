@@ -8,23 +8,43 @@
 
 // FOR GCP DATABASE
 
-// $username = 'root';                       // or your username
-// $password = 'UpsornWinter2023';     
+// if(isset($_SESSION['Type'])){
+//     if($_SESSION['Type'] == 'Administrator'){
+//         $username = 'root';
+//         $password = 'UpsornWinter2023';
+//     }elseif($_SESSION['Type'] == 'Technician'){
+//         $username = 'technician';
+//         $password = 'UpsornWinter2023_b';
+//     }
+// }
+// if (!isset($username)){
+//     $username = 'customer';
+//     $password = 'UpsornWinter2023_c';
+// }     
 // $host = 'contractorconnecter:us-east4:contractordb';       // e.g., 'cs4750:us-east4:db-demo'; 
 // $dbname = 'cc';           // e.g., 'guestbook';
 // $dsn = "mysql:unix_socket=/cloudsql/$host;dbname=$dbname";
 //       e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 
 // FOR LOCAL XAMPP w GCP Database
-
-$username = 'root';
-$password = 'UpsornWinter2023';
+if(isset($_SESSION['Type'])){
+    if($_SESSION['Type'] == 'Administrator'){
+        $username = 'root';
+        $password = 'UpsornWinter2023';
+    }elseif($_SESSION['Type'] == 'Technician'){
+        $username = 'technician';
+        $password = 'UpsornWinter2023_b';
+    }
+}
+if (!isset($username)){
+    $username = 'customer';
+    $password = 'UpsornWinter2023_c';
+}
 $host = 'contractorconnecter:us-east4:contractordb';       // e.g., 'cs4750:us-east4:db-demo'; 
 $dbname = 'cc';;           // e.g., 'guestbook';
 $dsn = "mysql:host=34.85.250.218;dbname=$dbname";   // connect PHP (XAMPP) to DB (GCP)
-//       e.g., "mysql:host=99.99.999.99;dbname=$dbname";   
 
-// to get public IP addres of the SQL instance, go to GCP SQL overview page
+
 
 // To connect from a local PHP to GCP SQL instance, need to add authormized network
 // to allow (my)machine to connect to the SQL instance. 
