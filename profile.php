@@ -55,7 +55,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
-<?php if ($_SESSION['Type'] != 'Technician') ?>
+<?php if ($_SESSION['Type'] != 'Technician'){ ?>
 	<div class="results-container">
         <?php if (count($Address) > 0 ): ?>
             <table>
@@ -77,6 +77,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             <p>No Address on file</p>
         <?php endif; ?>
     </div>
+    <?php } ?>
 
 	<div class="results-container">
         <?php if (count($Phones) > 0 ): ?>
@@ -103,7 +104,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     </div>
 
 <!-- Ratings for Technicians -->
-<?php if ($_SESSION['Type'] == 'Technician') ?>
+<?php if ($_SESSION['Type'] == 'Technician'){ ?>
 <div class="results-container">
             <?php if (count($AVGRating) > 0): ?>
                 <table>
@@ -144,7 +145,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         <?php else: ?> 
             <p>No Ratings on file</p>
         <?php endif; ?>
-        </div>
+    </div>
+    <?php } ?>
 
 
 </body>
@@ -156,4 +158,5 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     header("Location: login.php");
     exit();
   }
+  ob_end_flush();
 ?>
