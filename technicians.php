@@ -1,4 +1,4 @@
-<?php
+<?php 
 ob_start();
 session_start();
 require("connect-db.php");
@@ -6,17 +6,15 @@ require("search-db.php");
 
 
 if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
-  // Connect to database
     $Technician = array();
-    $User = array();
 
-  // Search for technicians
+    //check if search entered
     if (isset($_POST['occupation-type'])) {
-        $Technician = searchTechByOcc($_POST['occupation-type']);
+        $Technician = searchTechByName($_POST['occupation-type']);
+    } else {
+        $Technician = getAllTech();        
     }
-
-?>
-
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +30,24 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
+<div class="search-container">
+    <form action="technicians.php" method="POST">
+      <label for="occupation-type">Search for a Technician</label>
+      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Name">
+      <button type="submit">Search</button>
+    </form>
+</div>
 
-	<div class="results-container">
+<?php if($_SESSION['Type'] == 'Administrator'){ ?>
+	<form action="addTechnician.php">
+    	<input type="submit" value="Add Technician"/>
+	</form>
+</div>	
+<?php } ?>
+
+<div class="results-container">
 		<h3>Technician Results</h3>
-		<?php if (count($Technician) > 0 || count($User) > 0): ?>
+		<?php if (count($Technician) > 0): ?>
 			<table>
 				<thead>
 					<tr>
@@ -47,7 +59,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 				<tbody>
 					<?php foreach ($Technician as $item): ?>
 						<tr>
-                            <td><?php echo $item['Technician_Name']; ?></td>
+                            <td><?php echo '<a href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></td>
 							<td><?php echo $item['OccupationType']; ?></td>
                             <td><?php echo $item['Rating']; ?></td>
 						</tr>
@@ -58,9 +70,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 			<p>No results found.</p>
 		<?php endif; ?>
 	</div>
-</body>
-</html>
 
+</html>
 
 <?php
   } else {

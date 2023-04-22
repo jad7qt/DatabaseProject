@@ -12,23 +12,35 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     $Ratings = array();
     $AVGRating = array();
 
+    $userID = $_SESSION['UserID'];
+    $pageID = $_GET['id'];
+
+    //temporary fix for no ID passed in - need to update anywhere that links to profile
+    if($pageID == NULL){
+        $pageID = $userID;
+    }
+
+    //determine what type of user you are viewing NOT YOUR OWN TYPE
+    $pageType = getUserType($pageID);
+    $pageType = $pageType['Type'];
+
 
     //check user type to return correct query
-    if ($_SESSION['Type'] == 'Administrator') {
-        $Address = getAdminAddress($_SESSION['UserID']);
+    if ($pageType == 'Administrator') {
+        $Address = getAdminAddress($pageID);
 
     }
 
-    elseif ($_SESSION['Type'] == 'Technician') {
-        $Ratings = getTechRatings($_SESSION['UserID']);
-        $AVGRating = getAvgRating($_SESSION['UserID']);
+    elseif ($pageType == 'Technician') {
+        $Ratings = getTechRatings($pageID);
+        $AVGRating = getAvgRating($pageID);
     }
 
-    elseif ($_SESSION['Type'] == 'Customer') {
-        $Address = getCustAddress($_SESSION['UserID']);
+    elseif ($pageType == 'Customer') {
+        $Address = getCustAddress($pageID);
     }
 
-    $Phones = getUserPhones($_SESSION['UserID']);
+    $Phones = getUserPhones($pageID);
 ?>
 
 
@@ -39,14 +51,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 	<link rel="stylesheet" type="text/css" href="css/searchResults.css">
 </head>
 <body>
-	<header>
-		<div class="logo-container">
-      		<img src="images/logo_blank.png" alt="Logo" class="logo">
-      		<h1 class="site-title">ContractorConnector</h1>
-    	</div>
-    	<h2 class="welcome-message">Profile page for <?php echo $_SESSION['Type'], ' ', $_SESSION['FirstName']?> </h2>
-    	<button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-	</header>
 
 <!--HEADER-->
 <?php include('header.php'); ?>
@@ -55,7 +59,10 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
-<?php if ($_SESSION['Type'] != 'Technician') ?>
+TESTING: UserID = <?php echo $userID ?>
+TESTING: PageID = <?php echo $pageID ?> 
+
+<?php if ($pageType != 'Technician'){ ?>
 	<div class="results-container">
         <?php if (count($Address) > 0 ): ?>
             <table>
@@ -77,6 +84,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             <p>No Address on file</p>
         <?php endif; ?>
     </div>
+    <?php } ?>
 
 	<div class="results-container">
         <?php if (count($Phones) > 0 ): ?>
@@ -103,7 +111,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     </div>
 
 <!-- Ratings for Technicians -->
-<?php if ($_SESSION['Type'] == 'Technician') ?>
+<?php if ($pageType == 'Technician'){ ?>
 <div class="results-container">
             <?php if (count($AVGRating) > 0): ?>
                 <table>
@@ -144,7 +152,18 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         <?php else: ?> 
             <p>No Ratings on file</p>
         <?php endif; ?>
-        </div>
+    </div>
+    <?php }
+
+    if($userID == $pageID){ ?>
+        TESTING: This is my profile page
+        TODO: add update profile link
+    <?php } 
+
+    elseif($pageType == 'Technician'){ ?>
+        TESTING: Add rating for technician (not self)
+        TODO: link to add rating page
+    <?php }?>
 
 
 </body>
@@ -156,4 +175,5 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     header("Location: login.php");
     exit();
   }
+  ob_end_flush();
 ?>
