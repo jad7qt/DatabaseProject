@@ -1,32 +1,24 @@
 <?php
+ob_start();
 session_start();
 
 if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("connect-db.php");
     require("customer-db.php");
+    require("payments-db.php");
 
     $Payments = array();
 
   // Display Payments
 
 	//admin outstanding payments query
-    $stmt = $db->prepare("SELECT CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Project.JobType, 
-    Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment
-    FROM Invoice
-    INNER JOIN 
-        (SELECT Payment.ProjectID, SUM(Payment.Amount) as Total_Payment
-        FROM Payment
-        GROUP BY Payment.ProjectID
-        ORDER BY ProjectID) as TP
-    ON Invoice.ProjectID = TP.ProjectID
-    INNER JOIN Project
-    ON Project.ProjectID = Invoice.ProjectID
-    INNER JOIN User
-    ON Project.CustomerID = User.UserID
-    HAVING Remaining_Payment > 0
-	ORDER BY Project.EndDate");
-    $stmt->execute();
-    $Payments = $stmt->fetchAll();
+  if($_SESSION['Type']=='Administrator'){
+    $Payments = admin_payments();
+  }elseif($_SESSION['Type']=='Technician'){
+    $Payments = tech_payments($_SESSION['UserID']);
+  }else{
+    $Payments = cust_payments($_SESSION['UserID']);
+  }
 
 ?>
 
@@ -84,4 +76,5 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     header("Location: login.php");
     exit();
   }
+  ob_end_flush();
 ?>
