@@ -1,9 +1,27 @@
 <?php
+
+function getUserType($pageID){
+    global $db;
+    $query1 = "SELECT User.Type
+    FROM User
+    WHERE User.UserID = :viewID
+    LIMIT 1";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':viewID', $pageID);
+    $statement1->execute();    
+    $userType = $statement1->fetch();
+    $statement1->closeCursor();
+
+    return $userType;
+}
+
 function getAdminAddress($userID){
     global $db;
     $query1 = "SELECT CONCAT(Administrator.Street, ' ', Administrator.City, ', ', Administrator.State, ' ', Administrator.Zip) as Address
     FROM Administrator
-    WHERE UserID = :adminID";
+    WHERE UserID = :adminID
+    LIMIT 1";
 
     $statement1 = $db->prepare($query1);
     $statement1->bindValue(':adminID', $userID);
@@ -18,7 +36,8 @@ function getTechRatings($userID){
     global $db;
     $query1 = "SELECT Rating, Comment
     FROM Ratings
-    WHERE TechnicianID = :techID";
+    WHERE TechnicianID = :techID
+    ORDER BY Rating DESC";
 
     $statement1 = $db->prepare($query1);
     $statement1->bindValue(':techID', $userID);
@@ -49,7 +68,8 @@ function getCustAddress($userID){
     global $db;
     $query1 = "SELECT CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Address
     FROM Customer
-    WHERE UserID = :custID";
+    WHERE UserID = :custID
+    LIMIT 1";
 
     $statement1 = $db->prepare($query1);
     $statement1->bindValue(':custID', $userID);
