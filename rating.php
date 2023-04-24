@@ -13,6 +13,16 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             $id = $_POST['TechID'];
             header("Location: profile.php?id=$id");
             exit();
+        }elseif(!empty($_POST['actionBtn']) && $_POST['actionBtn'] == 'updateRate'){
+            updateRateTech($_SESSION['UserID'], $_POST['TechID'], $_POST['rating'], $_POST['comment']);
+            $id = $_POST['TechID'];
+            header("Location: profile.php?id=$id");
+            exit();
+        }elseif(!empty($_POST['actionBtn']) && $_POST['actionBtn'] == 'deleteRate'){
+            deleteRateTech($_SESSION['UserID'], $_POST['TechID']);
+            $id = $_POST['TechID'];
+            header("Location: profile.php?id=$id");
+            exit();
         }
     }
 

@@ -124,7 +124,10 @@ TESTING: PageID = <?php echo $pageID ?>
     </div>
 
 <!-- Ratings for Technicians -->
-<?php if ($pageType == 'Technician'){ ?>
+<?php if ($pageType == 'Technician'){ 
+    $hasRated = FALSE;
+    ?>
+
 
 <div class="results-container">
             <?php if (count($AVGRating) > 0): ?>
@@ -160,23 +163,34 @@ TESTING: PageID = <?php echo $pageID ?>
                             <td><?php echo $item['Rating']; ?></td>
                             <td><?php echo $item['Comment']; ?></td>
                         </tr>
+                        <?php
+                        if ($item['CustomerID']==$_SESSION['UserID'] && !$hasRated){
+                            $hasRated = TRUE;
+                            $ratingGiven = $item;
+                        }
+                        ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         <?php else: ?> 
             <p>No Ratings on file</p>
         <?php endif; ?>
+
          <!-- MODAL BUTTOM -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+         <!-- TODO: Make this button only show up if user has not already rated, change to update btn
+        if the user has already rated which will allow them to change or delete their old rating. -->
+        <?php if(!$hasRated){?>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Rate this Technician
         </button>
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Rate Technician</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -201,6 +215,45 @@ TESTING: PageID = <?php echo $pageID ?>
             </div>
         </div>
         </div>
+        <?php }else{?>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Update Rating
+        </button>
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Technician Rating</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <form name="rateForm" action="rating.php" method="post">
+                <div class="modal-body">
+                    <div class="row mb-3 mx-3">
+                        Rating (0.0-5.0):
+                        <input type="number" class="form-control" name="rating" min=0 max=5 step=0.1 value="<?php if ($hasRated) echo $ratingGiven['Rating'] ?>" required />
+                    </div>
+                    <div class="row mb-3 mx-3">
+                        Comment:
+                        <input type="text" class="form-control" name="comment" value="<?php if ($hasRated) echo $ratingGiven['Comment'] ?>" required />
+                    </div>
+                    <input type="hidden" name="TechID" value=<?php echo $_GET['id'];?> />
+                    <input type="hidden" name="CustID" value=<?php echo $_SESSION['UserID'];?> />
+                </div>
+                <div class="modal-footer">
+                    <button id="buttonDeleteRating" type="submit" class="btn btn-primary" name="actionBtn" value="deleteRate">Delete</button>
+                    <button id="buttonUpdateRating" type="submit" class="btn btn-primary" name="actionBtn" value="updateRate">Update</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <?php }?>
     <!-- END MODAL -->
 
     </div>
