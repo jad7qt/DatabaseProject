@@ -6,6 +6,7 @@
 //  $dbname = 'jad7qt_b';
 //  $dsn = "mysql:host=$host;dbname=$dbname";
 
+
 // FOR GCP DATABASE
 
 // if(isset($_SESSION['Type'])){

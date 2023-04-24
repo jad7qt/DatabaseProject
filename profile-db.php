@@ -34,7 +34,7 @@ function getAdminAddress($userID){
 
 function getTechRatings($userID){
     global $db;
-    $query1 = "SELECT Rating, Comment
+    $query1 = "SELECT Rating, Comment, CustomerID
     FROM Ratings
     WHERE TechnicianID = :techID
     ORDER BY Rating DESC";
