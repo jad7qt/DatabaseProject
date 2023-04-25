@@ -27,11 +27,23 @@ switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {
     case '/payments.php':
         require 'payments.php';
         break;
+    case '/profile.php':
+        require 'profile.php';
+        break;
+    case '/projects.php':
+        require 'projects.php';
+        break;
+    case '/rating.php':
+        require 'rating.php';
+        break;
     case '/searchResults.php':
         require 'searchResults.php';
         break;
     case '/services.html':
         require 'services.html';
+        break;
+    case '/technicians.php':
+        require 'technicians.php';
         break;
    default:
       http_response_code(404);
