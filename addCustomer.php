@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 require("connect-db.php");
 require("customer-db.php");
@@ -9,6 +10,8 @@ if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !is
     {
         addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
         addCustomer($_POST['username'], $_POST['st'], $_POST['city'], $_POST['state'], $_POST['zip']);
+        header("Location: login.php");
+        exit();
     }
     
 }
@@ -33,7 +36,7 @@ if ( (!isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || $_SESSION
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
+    <link rel="icon" type="image/png" href="https://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
     <link rel="stylesheet" href="css/addCustomer.css">
 </head>
 

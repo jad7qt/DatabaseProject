@@ -1,10 +1,12 @@
 <?php
 
+
 //  $username = 'jad7qt_b';
 //  $password = 'UpsornWinter2023';
 //  $host = 'mysql01.cs.virginia.edu';
 //  $dbname = 'jad7qt_b';
 //  $dsn = "mysql:host=$host;dbname=$dbname";
+
 
 // FOR GCP DATABASE
 
