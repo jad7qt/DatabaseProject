@@ -7,9 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Administrator'
 {
     if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Technician"))
     {
+        if (usernameTaken($_POST['username'])) {
+            header("Location: addTechnician.php?error=Username is already taken");
+            exit();
+        }else{
         addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
         addTechnician($_POST['username'], $_POST['OccupationType']);
         header("Location: homepage.php");
+        }
     }
 }
 ?>
@@ -45,22 +50,25 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
     <img src="images/logo_blank.png" alt="Logo" class="logo">
     <h1 class="site-title">Create Technician</h1>
 </div>
+<?php if (isset($_GET['error'])) { ?>
+    <p class="error"><?php echo $_GET['error']; ?></p>
+<?php } ?>
 <form name="mainForm" action="addTechnician.php" method="post">
         <div class="row mb-3 mx-3">
             Username:
-            <input type="text" class="form-control" name="username" required />
+            <input type="text" class="form-control" name="username" maxlength=19 required />
         </div>
         <div class="row mb-3 mx-3">
             Password:
-            <input type="text" class="form-control" name="password" required />
+            <input type="password" class="form-control" name="password" maxlength=29 required />
         </div>
         <div class="row mb-3 mx-3">
             First Name:
-            <input type="text" class="form-control" name="fname" required />
+            <input type="text" class="form-control" name="fname" maxlength=10 required />
         </div>
         <div class="row mb-3 mx-3">
             Last Name:
-            <input type="text" class="form-control" name="lname" required/>
+            <input type="text" class="form-control" name="lname" maxlength=10 required/>
         </div>
         <div id="liner"></div>
         <div id="Occupation">
@@ -68,7 +76,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
         </div>
         <div class="row mb-3 mx-3">
             Occupation:
-            <input type="text" class="form-control" name="st" required/>
+            <input type="text" class="form-control" name="st" maxlength=18 required/>
         </div>
         <input type="hidden" name="type" value="Technician" />
         <div id="button-layout"> 

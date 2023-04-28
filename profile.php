@@ -7,14 +7,14 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     require("connect-db.php");
     require("profile-db.php");
 
-    // if ( ($_SERVER['REQUEST_METHOD'] == 'POST' ) ){
-    //     if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "rate"))
-    //     {
-    //         rates($_POST['CustID'], $_POST['TechID'], $_POST['rating'], $_POST['comment']);
-    //         header("Location: homepage.php");
-    //         exit();
-    //     }
-    // }
+    if ( ($_SERVER['REQUEST_METHOD'] == 'POST' ) ){
+        if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "addPhone"))
+        {
+            addPhoneNum($_SESSION['UserID'], $_POST['phoneType'], $_POST['phoneNum']);
+            header("Location: profile.php");
+            exit();
+        }
+    }
     
     $Address = array();
     $Ratings = array();
@@ -119,6 +119,51 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         <?php else: ?> 
             <p>No Phone Numbers on file</p>
         <?php endif; ?>
+        <!-- ADD MODAL HERE FOR ADDING PHONE NUMBERS -->
+        <?php if($pageID == $userID){
+            ?>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phoneModal">
+        Add Phone Number
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="phoneModalLabel">Add Phone Number</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <form name="rateForm" action="profile.php" method="post">
+                <div class="modal-body">
+                    <div class="row mb-3 mx-3">
+                        Type:
+                        <select id="phoneType" name="phoneType" class="form-control" required>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Work">Work</option>
+                            <option value="Home">Home</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3 mx-3">
+                        Phone Number:
+                        <input type="tel" id="phoneNum" class="form-control" name="phoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="buttonAddPhone" type="submit" class="btn btn-primary" name="actionBtn" value="addPhone">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <?php
+        }
+        ?>
+
+        <!-- END MODAL FOR ADD PHONE -->
     </div>
 
 <!-- Ratings for Technicians -->
@@ -180,17 +225,17 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
          <!-- TODO: Make this button only show up if user has not already rated, change to update btn
         if the user has already rated which will allow them to change or delete their old rating. -->
         <?php if(!$hasRated){?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
         Rate this Technician
         </button>
         
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rate Technician</h5>
+                <h5 class="modal-title" id="ratingModalLabel">Rate Technician</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -216,17 +261,17 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         </div>
         </div>
         <?php }else{?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
         Update Rating
         </button>
         
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Technician Rating</h5>
+                <h5 class="modal-title" id="ratingModalLabel">Update Technician Rating</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -239,7 +284,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </div>
                     <div class="row mb-3 mx-3">
                         Comment:
-                        <input type="text" class="form-control" name="comment" value="<?php if ($hasRated) echo $ratingGiven['Comment'] ?>" required />
+                        <input type="text" class="form-control" name="comment" maxlength=65 value="<?php if ($hasRated) echo $ratingGiven['Comment'] ?>" required />
                     </div>
                     <input type="hidden" name="TechID" value=<?php echo $_GET['id'];?> />
                     <input type="hidden" name="CustID" value=<?php echo $_SESSION['UserID'];?> />
@@ -261,8 +306,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     <?php }
 
     if($userID == $pageID){ ?>
-        TESTING: This is my profile page
-        TODO: add update profile link
+        <button id="updateProfileBtn" onclick="window.location.href='updateProfile.php'" class="btn btn-primary" value="updateProfile">Update Profile</button>
     <?php } ?>
 
 

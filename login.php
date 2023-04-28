@@ -43,6 +43,7 @@ require("connect-db.php");
                 echo "Logged in!";
                 $_SESSION['Username'] = $result[0]['Username'];
                 $_SESSION['FirstName'] = $result[0]['FirstName'];
+                $_SESSION['LastName'] = $result[0]['LastName'];
                 $_SESSION['UserID'] = $result[0]['UserID'];
                 $_SESSION['Type'] = $result[0]['Type'];
 
