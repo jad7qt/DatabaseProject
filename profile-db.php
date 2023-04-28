@@ -95,3 +95,17 @@ function getUserPhones($userID){
 
     return $Phones;
 }
+
+function addPhoneNum($userid, $type, $number)
+{
+    global $db;
+    $query1 = "INSERT INTO PhoneNumber VALUES (:userid, :type, :number)";
+    $statement = $db->prepare($query1);
+    $statement->bindValue(':userid', $userid);
+    $statement->bindValue(':type', $type);
+    $statement->bindValue(':number', $number);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+?>
