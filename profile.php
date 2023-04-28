@@ -239,7 +239,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </div>
                     <div class="row mb-3 mx-3">
                         Comment:
-                        <input type="text" class="form-control" name="comment" value="<?php if ($hasRated) echo $ratingGiven['Comment'] ?>" required />
+                        <input type="text" class="form-control" name="comment" maxlength=65 value="<?php if ($hasRated) echo $ratingGiven['Comment'] ?>" required />
                     </div>
                     <input type="hidden" name="TechID" value=<?php echo $_GET['id'];?> />
                     <input type="hidden" name="CustID" value=<?php echo $_SESSION['UserID'];?> />
@@ -261,8 +261,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     <?php }
 
     if($userID == $pageID){ ?>
-        TESTING: This is my profile page
-        TODO: add update profile link
+        <button id="updateProfileBtn" onclick="window.location.href='updateProfile.php'" class="btn btn-primary" value="updateProfile">Update Profile</button>
     <?php } ?>
 
 
