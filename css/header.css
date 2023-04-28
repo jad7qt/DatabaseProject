@@ -68,4 +68,10 @@ header {
   .logout-button:hover {
     background-color: #b51a0b;
   }
+
+  #name{
+    padding-right: 180px;
+  }
+
   /* END OF HEADER*/
+
