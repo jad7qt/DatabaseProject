@@ -41,7 +41,7 @@ label {
 
 button {
   display: inline-block;
-  background: #333;
+  background: #7a1107;
   padding: 12px 24px;
   color: #fff;
   font-weight: 500;
@@ -155,4 +155,8 @@ footer p {
 .btn-back{
   background-color: red;
   align-self: center;
+}
+
+.btnlogin{
+  background: #7a1107
 }
