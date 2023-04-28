@@ -30,7 +30,7 @@ switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {
     case '/searchResults.php':
         require 'searchResults.php';
         break;
-    case 'services.html':
+    case '/services.html':
         require 'services.html';
         break;
    default:

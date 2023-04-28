@@ -71,8 +71,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
-TESTING: UserID = <?php echo $userID ?>
-TESTING: PageID = <?php echo $pageID ?> 
 
 <?php if ($pageType != 'Technician'){ ?>
 
@@ -176,6 +174,8 @@ TESTING: PageID = <?php echo $pageID ?>
             <p>No Ratings on file</p>
         <?php endif; ?>
 
+        <?php
+        if($_SESSION['Type'] == "Customer"){ ?>
          <!-- MODAL BUTTOM -->
          <!-- TODO: Make this button only show up if user has not already rated, change to update btn
         if the user has already rated which will allow them to change or delete their old rating. -->
@@ -255,6 +255,7 @@ TESTING: PageID = <?php echo $pageID ?>
 
         <?php }?>
     <!-- END MODAL -->
+    <?php } ?>
 
     </div>
     <?php }
@@ -262,13 +263,7 @@ TESTING: PageID = <?php echo $pageID ?>
     if($userID == $pageID){ ?>
         TESTING: This is my profile page
         TODO: add update profile link
-    <?php } 
-
-    elseif($pageType == 'Technician'){ ?>
-        TESTING: Add rating for technician (not self)
-        TODO: link to add rating page
-    <?php }?>
-
+    <?php } ?>
 
 
 </body>

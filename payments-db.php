@@ -4,7 +4,7 @@ function admin_payments()
 {
     global $db;
     $stmt = $db->prepare("SELECT CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Project.JobType, 
-    Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment
+    Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment, Project.ProjectID
     FROM Invoice
     INNER JOIN 
         (SELECT Payment.ProjectID, SUM(Payment.Amount) as Total_Payment
@@ -52,7 +52,7 @@ function tech_payments($UserID){
 function cust_payments($UserID){
     global $db;
     $stmt = $db->prepare("SELECT CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Project.JobType, 
-    Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment
+    Project.EndDate, FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment, Project.ProjectID
     FROM Invoice
     INNER JOIN 
         (SELECT Payment.ProjectID, SUM(Payment.Amount) as Total_Payment
@@ -67,6 +67,20 @@ function cust_payments($UserID){
     WHERE Project.CustomerID = :UserID
     HAVING Remaining_Payment > 0
 	ORDER BY Project.EndDate");
+    $stmt->bindValue(':UserID', $UserID);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $result;
+}
+
+function getPrevPayments($UserID){
+    global $db;
+    $stmt = $db->prepare("SELECT Payment.*, Project.JobType, Project.CustomerID
+    FROM Payment
+    INNER JOIN Project
+    ON Payment.ProjectID = Project.ProjectID
+    WHERE Project.CustomerID = :UserID;");
     $stmt->bindValue(':UserID', $UserID);
     $stmt->execute();
     $result = $stmt->fetchAll();
