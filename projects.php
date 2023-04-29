@@ -69,7 +69,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                             <?php if($_SESSION['Type'] != 'Technician'): ?>
                                 <th>Technician Name</th>
                             <?php endif; ?>                        
-                            <th>Completed</th>                        
+                            <th>Status</th>                        
 
                         </tr>
                     </thead>

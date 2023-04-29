@@ -4,21 +4,18 @@ session_start();
 require("connect-db.php");
 require("createProject-db.php");
 
-if ( ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || (isset($_SESSION['Type']) && $_SESSION['Type'] == 'Administrator'))
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Customer')
 {
-    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Customer"))
+    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Project"))
     {
-        if (usernameTaken($_POST['username'])) {
-            header("Location: addCustomer.php?error=Username is already taken");
-            exit();
-        }else{
-        addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
-        addCustomer($_POST['username'], $_POST['st'], $_POST['city'], $_POST['state'], $_POST['zip']);
-        header("Location: login.php");
+        newProject($_SESSION['UserID'], $_POST['techid'], $_POST['jobtype'], $_POST['description'], $_POST['startdate'], $_POST['enddate']);
+        header("Location: projects.php");
         exit();
-        }
     }
     
+}elseif($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Technician'){
+    header("Location: createProject.php?error=Only Customers can create a new project");
+
 }
 ?>
 
@@ -55,7 +52,7 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
 <?php if (isset($_GET['error'])) { ?>
     <p class="error"><?php echo $_GET['error']; ?></p>
 <?php } ?>
-<form name="mainForm" action="addCustomer.php" method="post">
+<form name="mainForm" action="createProject.php" method="post">
         <div class="row mb-3 mx-3">
             Requested Technician:
             <select id="techid" style="width:550px"name="techid" class="form-control" required>
@@ -76,11 +73,11 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
         <div id="liner"></div>
         <div class="row mb-3 mx-3">
             Proposed Start Date:
-            <input id="startDateInput" type="date" class="form-control" name="lname" min='2023-04-15' required/>
+            <input id="startDateInput" type="date" class="form-control" name="startdate" min='2023-04-15' required/>
         </div>
         <div class="row mb-3 mx-3">
             Proposed End Date:
-            <input id="endDateInput" type="date" class="form-control" name="lname" min='2023-04-15' required/>
+            <input id="endDateInput" type="date" class="form-control" name="enddate" min='2023-04-15' required/>
         </div>
         <script>
             var today = new Date();
@@ -99,7 +96,6 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
             document.getElementById("startDateInput").setAttribute("min", today);
             document.getElementById("endDateInput").setAttribute("min", today);
         </script>
-        <input type="hidden" name="type" value="Customer" />
         <div id="button-layout">
         <input id="buttonCreateProject" type="submit" class="btn btn-primary" name="actionBtn" value="Create Project" title="class to add new Project" />
         <button type="button" onclick="window.location.href='project.php';" name="actionBtn" value="Back">Back</button>
