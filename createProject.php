@@ -98,7 +98,7 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
         </script>
         <div id="button-layout">
         <input id="buttonCreateProject" type="submit" class="btn btn-primary" name="actionBtn" value="Create Project" title="class to add new Project" />
-        <button type="button" onclick="window.location.href='project.php';" name="actionBtn" value="Back">Back</button>
+        <button type="button" onclick="window.location.href='projects.php';" name="actionBtn" value="Back">Back</button>
         </div>
     </form>
 </div>
