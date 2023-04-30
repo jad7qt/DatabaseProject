@@ -81,4 +81,54 @@
     margin-left: 45%;
   }
 
+  #buttonRate{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
 
+  #buttonRate:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #buttonCreateCustomer{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonCreateCustomer:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonDeleteRating{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonDeleteRating:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonUpdateRating{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonUpdateRating:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #buttonUpdateUser{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
