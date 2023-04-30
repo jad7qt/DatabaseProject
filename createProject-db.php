@@ -23,8 +23,24 @@ function newProject($custid, $techid, $jobtype, $description, $startdate, $endda
     $statement2->bindValue(':description', $description);
     $statement2->bindValue(':startdate', $startdate);
     $statement2->bindValue(':enddate', $enddate);
-    $statement2->execute();    
+    $statement2->execute();
     $statement2->closeCursor();
 }
+
+function postComment($projid, $userid, $comment)
+{
+    global $db;
+    // $currenttime = date('Y-m-d H:i:s');
+    $query2 = "INSERT INTO Comment(UserID, DateTime, ProjectID, Text)
+    VALUES(:userid, '3/3/2023 9:30', :projid, :text)";
+    $statement2 = $db->prepare($query2);
+    $statement2->bindValue(':userid', $userid);
+    $statement2->bindValue(':projid', $projid);
+    $statement2->bindValue(':text', $comment);
+    // $statement2->bindValue(':currenttime', $currenttime);
+    $statement2->execute();
+    $statement2->closeCursor();
+}
+
 
 ?>
