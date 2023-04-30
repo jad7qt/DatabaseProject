@@ -70,7 +70,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                             <?php if($_SESSION['Type'] != 'Technician'): ?>
                                 <th>Technician Name</th>
                             <?php endif; ?>                        
-                            <th>Completed</th>                        
+                            <th>Status</th>                        
 
                         </tr>
                     </thead>
@@ -107,6 +107,10 @@ elseif ($_SESSION['Type'] == 'Customer') {
             <?php else: ?> 
                 <p>No results found</p>
             <?php endif; ?>
+
+            <button type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
+            Add a New Project
+            </button>
         </div>
 
 </body>
