@@ -56,7 +56,7 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
         <div class="row mb-3 mx-3">
             Requested Technician:
             <select id="techid" style="width:550px"name="techid" class="form-control" required>
-                <option value="Any" > Any </option>
+                <option value="no" > Any </option>
                 <?php foreach ($Techs as $item): ?>
                 <option value="<?php echo $item['UserID']; ?>"><?php echo $item['FirstName'] . " " . $item['LastName'] . " (" . $item['Username'] . ")";?></option>
                 <?php endforeach; ?>
