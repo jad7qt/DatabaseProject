@@ -29,50 +29,18 @@ elseif ($_SESSION['Type'] == 'Customer') {
 <html>
 <head>
 	<title>Projects</title>
-	<link rel="stylesheet" type="text/css" href="css/searchResults.css">
+	<link rel="stylesheet" type="text/css" href="css/projects.css">
 </head>
-<body>
-	<header>
-		<div class="logo-container">
-      		<img src="images/logo_blank.png" alt="Logo" class="logo">
-      		<h1 class="site-title">ContractorConnector</h1>
-    	</div>
-    	<h2 class="welcome-message">Project page for <?php echo $_SESSION['Type'], ' ', $_SESSION['FirstName']?> </h2>
-    	<button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
-	</header>
 
-	<!--HAMBURGER BELOW -->
-	<nav role="navigation">
-	  <div id="menuToggle">
-	    <!--
-	    A fake / hidden checkbox is used as click reciever,
-	    so you can use the :checked selector on it.
-	    -->
-	    <input type="checkbox" />
-	    
-	    <!--
-	    Some spans to act as a hamburger.
-	    
-	    They are acting like a real hamburger,
-	    not that McDonalds stuff.
-	    -->
-	    <span></span>
-	    <span></span>
-	    <span></span>
-	    
-	    <!--
-	    Too bad the menu has to be inside of the button
-	    but hey, it's pure CSS magic.
-	    -->
-	    <ul id="menu">
-	      <a href="projects.php"><li>Projects</li></a>
-	      <a href="payments.php"><li>Payments</li></a>
-	      <a href="#"><li>Profile</li></a>
-	      <a href="#"><li>Contact</li></a>
-	    </ul>
-	  </div>
-	</nav>
 
+<!--HEADER-->
+<?php include('header.php'); ?>
+<!--HEADER-->
+<!--hamburger-->
+<?php include('hamburger.php'); ?>
+<!--hamburger-->
+
+    
 	<div class="results-container">
     <?php if($_SESSION['Type'] == 'Administrator'): ?>
         <h3>Admin Project Master Table</h3>
@@ -89,6 +57,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                 <table>
                     <thead>
                         <tr>
+                            <th> Details </th>
                             <?php if($_SESSION['Type'] != 'Customer'): ?>
                                 <th>Customer Name</th>
                                 <th>Customer Phone</th>
@@ -101,7 +70,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                             <?php if($_SESSION['Type'] != 'Technician'): ?>
                                 <th>Technician Name</th>
                             <?php endif; ?>                        
-                            <th>Completed</th>                        
+                            <th>Status</th>                        
 
                         </tr>
                     </thead>
@@ -109,6 +78,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                         <?php 
                         foreach ($Projects as $item): ?>
                             <tr>
+                                <td> <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>
@@ -121,7 +91,15 @@ elseif ($_SESSION['Type'] == 'Customer') {
                                 <?php if($_SESSION['Type'] != 'Technician'): ?>
                                     <td><?php echo $item['Technician_Name']; ?></td>
                                 <?php endif; ?>
-                                <td><?php echo $item['Completed']; ?></td>
+                                <td>
+                                    <?php 
+                                        if ($item['Completed'] == "1") {
+                                            echo '<img src="images/check.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
+                                        } else {
+                                            echo "Ongoing";
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -129,10 +107,15 @@ elseif ($_SESSION['Type'] == 'Customer') {
             <?php else: ?> 
                 <p>No results found</p>
             <?php endif; ?>
+
+            <button type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
+            Add a New Project
+            </button>
         </div>
 
 </body>
-</html>
+
+
 
 
 <?php

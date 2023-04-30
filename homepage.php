@@ -22,9 +22,11 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 
 <div class="search-container">
     <form action="searchResults.php" method="POST">
-      <label for="occupation-type">Search for a Local Technician</label>
-      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter occupation type">
+      <label for="occupation-type">Search for a <b>Local Technician</b></label>
+      <div>
+      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
       <button type="submit">Search</button>
+      </div>
     </form>
 </div>
 

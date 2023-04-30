@@ -43,6 +43,7 @@ require("connect-db.php");
                 echo "Logged in!";
                 $_SESSION['Username'] = $result[0]['Username'];
                 $_SESSION['FirstName'] = $result[0]['FirstName'];
+                $_SESSION['LastName'] = $result[0]['LastName'];
                 $_SESSION['UserID'] = $result[0]['UserID'];
                 $_SESSION['Type'] = $result[0]['Type'];
 
@@ -97,7 +98,7 @@ if (!isset($_SESSION['Username'])){
             <input type="text" name="uname" placeholder="User Name"><br>
             <label>Password</label>
             <input type="password" name="password" placeholder="Password"><br>
-            <button id="btnlogin" type="submit" name="actionBtn" value="Login">Login</button>
+            <button class="btnlogin" type="submit" name="actionBtn" value="Login">Login</button>
             <button type="button" onclick="window.location.href='addCustomer.php';" name="actionBtn" value="SignUp">SignUp</button>
         </form>
     </main>
