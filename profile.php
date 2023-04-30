@@ -122,7 +122,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         <!-- ADD MODAL HERE FOR ADDING PHONE NUMBERS -->
         <?php if($pageID == $userID){
             ?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phoneModal">
+        <button id="buttonRed" type="button" class="btn btn-primary" data-toggle="modal" data-target="#phoneModal">
         Add Phone Number
         </button>
 
@@ -225,7 +225,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
          <!-- TODO: Make this button only show up if user has not already rated, change to update btn
         if the user has already rated which will allow them to change or delete their old rating. -->
         <?php if(!$hasRated){?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
+        <button id="buttonRate" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
         Rate this Technician
         </button>
         
@@ -261,7 +261,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
         </div>
         </div>
         <?php }else{?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
+        <button id="buttonRate" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ratingModal">
         Update Rating
         </button>
         
@@ -306,8 +306,11 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     <?php }
 
     if($userID == $pageID){ ?>
+    <div id="centerAlign">
         <button id="updateProfileBtn" onclick="window.location.href='updateProfile.php'" class="btn btn-primary" value="updateProfile">Update Profile</button>
+    </div>
     <?php } ?>
+
 
 
 </body>

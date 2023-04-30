@@ -78,7 +78,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                         <?php 
                         foreach ($Projects as $item): ?>
                             <tr>
-                                <td> <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
+                                <td> <?php echo '<a id="detailsRed" href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>
@@ -108,7 +108,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                 <p>No results found</p>
             <?php endif; ?>
 
-            <button type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
+            <button id="buttonNewProject" type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
             Add a New Project
             </button>
         </div>
