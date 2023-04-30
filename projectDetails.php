@@ -53,7 +53,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('header.php'); ?>
 <!--HEADER-->
 <!--hamburger-->
-<?php include('hamburger.php'); ?>
+<?php include('hamburgerBoot.php'); ?>
 <!--hamburger-->
 
 <div class="results-container">
@@ -154,7 +154,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
     <?php else: ?>
         <p>No comments found for project</p>
     <?php endif; ?>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal" id="btnAddComment" >
         Add Comment
         </button>
 

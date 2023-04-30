@@ -40,3 +40,45 @@
     padding-bottom: 9px;
   }
 
+  #buttonRed{
+    background-color: #7a1107;
+    border: none;
+  }
+
+  #buttonRed:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonAddPhone{
+    background-color: #7a1107;
+    border: none;
+  }
+
+  #buttonAddPhone:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+
+  #updateProfileBtn{
+    text-align: center;
+    background-color: #7a1107;
+    border: none;
+    position: relative;
+    height: 60px;
+    width: 150px;
+  }
+
+  #updateProfileBtn:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #centerAlign{
+    margin-left: 45%;
+  }
+
+

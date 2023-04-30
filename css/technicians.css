@@ -74,14 +74,19 @@
   button[type=submit] {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #008CBA;
+    background-color: darkred;
     border: none;
     border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
   }
+
+  button[type=submit]:hover {
+    background-color: #b6190b;
+  }
   
+
   /* Style for the search bar label */
   label[for="occupation-type"] {
     font-size: 24px;
@@ -101,7 +106,7 @@
   .techButton {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #7a1107;
+    background-color: #333;
     border: none;
     border-radius: 5px;
     color: white;
@@ -109,10 +114,37 @@
     cursor: pointer;
   }
   .techButton:hover{
-    background-color: #b6190b;
+    background-color: #7a1107;
   }
 
   .techNames {
     color: #7a1107;
   }
+
+  .plus-sign {
+    display: inline-block;
+    font-size: 20px;  /* adjust size as needed */
+    line-height: 1;  /* center vertically */
+    color: white;  /* choose color */
+    font-weight: bold;  /* make it bold if needed */
+    text-align: center;  /* center horizontally */
+    width: 20px;  /* adjust size as needed */
+    height: 20px;  /* adjust size as needed */
+}
+
+#buttonRed{
+  background-color: #7a1107;
+  border: none;
+}
+
+#buttonRed:hover{
+  background-color: #b6190b;
+  border: none;
+}
+
+#techName{
+  background-color: red;
+  color:red;
+}
+
   
