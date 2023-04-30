@@ -30,17 +30,27 @@ function newProject($custid, $techid, $jobtype, $description, $startdate, $endda
 function postComment($projid, $userid, $comment)
 {
     global $db;
-    // $currenttime = date('Y-m-d H:i:s');
+    $currenttime = date('Y-m-d H:i');
     $query2 = "INSERT INTO Comment(UserID, DateTime, ProjectID, Text)
-    VALUES(:userid, '3/3/2023 9:30', :projid, :text)";
+    VALUES(:userid, :currenttime, :projid, :text)";
     $statement2 = $db->prepare($query2);
     $statement2->bindValue(':userid', $userid);
     $statement2->bindValue(':projid', $projid);
     $statement2->bindValue(':text', $comment);
-    // $statement2->bindValue(':currenttime', $currenttime);
+    $statement2->bindValue(':currenttime', $currenttime);
     $statement2->execute();
     $statement2->closeCursor();
 }
 
+function deleteComment($userid, $datetime)
+{
+    global $db;
+    $query2 = "DELETE FROM Comment WHERE UserID=:userid AND DateTime=:datetime";
+    $statement2 = $db->prepare($query2);
+    $statement2->bindValue(':userid', $userid);
+    $statement2->bindValue(':datetime', $datetime);
+    $statement2->execute();
+    $statement2->closeCursor();
+}
 
 ?>

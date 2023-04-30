@@ -23,6 +23,11 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             $id=$_POST['projid'];
             header("Location: projectDetails.php?id=$id");
             quit();
+        }elseif(!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "deleteComment")){
+            deleteComment($_POST['userid'], $_POST['datetime']);
+            $id=$_POST['projid'];
+            header("Location: projectDetails.php?id=$id");
+            quit();
         }
 
     }
@@ -131,7 +136,16 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                 <?php foreach($comments as $item): ?>
                     <tr>
                         <td><?php echo $item['FullName']; ?></td>
-                        <td><?php echo $item['Text']; ?></td>
+                        <td><?php echo $item['Text']; ?> 
+                        <?php if($item['UserID'] == $_SESSION['UserID'] || $_SESSION['Type'] == "Administrator"){ ?>
+                            <form name="commentDeleteForm" action="projectDetails.php" method="post">
+                                <button style="float: right;" type="submit" class="btn btn-danger" name="actionBtn" value="deleteComment">Delete</button>
+                                <input type="hidden" name="userid" value="<?php echo $item['UserID']; ?>" />
+                                <input type="hidden" name="datetime" value="<?php echo $item['DateTime']; ?>" />
+                                <input type="hidden" name="projid" value="<?php echo $item['ProjectID']; ?>" />
+                            </form>
+                        <?php } ?>
+                        </td>
                         <td><?php echo $item['DateTime']; ?></td>
                     </tr>
                 <?php endforeach; ?>
