@@ -14,11 +14,19 @@ function selectAllTechs()
 function newProject($custid, $techid, $jobtype, $description, $startdate, $enddate)
 {
     global $db;
+
+    if($techid == "no"){ // NO TECH SELECTED 
+        $query2 = "INSERT INTO Project(CustomerID, JobType, Description, StartDate, EndDate, Completed)
+        VALUES(:custid, :jobtype, :description, :startdate, :enddate, 0)";
+    }else{
     $query2 = "INSERT INTO Project(CustomerID, TechnicianID, JobType, Description, StartDate, EndDate, Completed)
      VALUES(:custid, :techid, :jobtype, :description, :startdate, :enddate, 0)";
+    }
     $statement2 = $db->prepare($query2);
     $statement2->bindValue(':custid', $custid);
+    if($techid != "no"){
     $statement2->bindValue(':techid', $techid);
+    }
     $statement2->bindValue(':jobtype', $jobtype);
     $statement2->bindValue(':description', $description);
     $statement2->bindValue(':startdate', $startdate);
