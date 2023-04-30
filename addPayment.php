@@ -1,25 +1,23 @@
 <?php 
 ob_start();
+session_start();
 require("connect-db.php");
 require("customer-db.php");
+require("payments-db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] != 'Technician')
 {
-    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Create Technician"))
+    if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Add Payment"))
     {
-        addUser($_POST['username'], $_POST['password'], $_POST['type'], $_POST['fname'], $_POST['lname']);
-        addTechnician($_POST['username'], $_POST['OccupationType']);
-        header("Location: homepage.php");
+        addPaymentAdmin($_POST['projid'], $_POST['paymentType'], $_POST['amount']);
+        header("Location: payments.php");
+        exit();
     }
 }
-?>
-<?php 
-session_start();
+
 if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Type'] == "Administrator") {
+    $pageID = $_GET['id'];
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -48,37 +46,26 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
 <form name="mainForm" action="addPayment.php" method="post">
         <div class="row mb-3 mx-3">
             Payment Type:
-            <input type="text" class="form-control" name="paymentType" required />
+            <select id="paymentType" style="width:90%" name="paymentType" class="form-control" required>
+                <option value="Cash">Cash</option>  
+                <option value="Debit Card">Debit Card</option>  
+                <option value="Credit Card">Credit Card</option> 
+                <option value="Check">Check</option>   
+            </select>
         </div>
         <div class="row mb-3 mx-3">
             Payment Amount:
-            <input type="text" class="form-control" name="amount" required />
+            <input type="number" class="form-control" name="amount" required />
         </div>
-        <input type="hidden" name="type" value="Technician" />
+        <input type="hidden" name="projid" value="<?php echo $pageID; ?>" />
         <div id="button-layout"> 
-        <input id="buttonCreateTechnician" type="submit" class="btn btn-primary" name="actionBtn" value="Add Payment" title="class to add Technician/User" />
-        <button type="button" onclick="window.location.href='homepage.php';" name="actionBtn" value="Back">Back</button>
+        <input id="buttonAddTechnician" type="submit" class="btn btn-primary" name="actionBtn" value="Add Payment" title="class to add payment" />
+        <button type="button" onclick="window.location.href='payments.php';" name="actionBtn" value="Back">Back</button>
         </div>
     </form>
 </div>
 </body>
 </html>
-
-<html>  
-<head></head>  
-<title>Static Dropdown List</title>  
-<body>  
-Payment Type:  
-<select>  
-  <option value="Select">Select</option>
-  <option value="Vineet">Cash</option>  
-  <option value="Sumit">Debit Card</option>  
-  <option value="Dorilal">Credit Card</option> 
-  <option value="Dorilal">Venmo/Paypal/Zelle</option>
-  <option value="Dorilal">Check</option>   
-</select>   
-</body>  
-<html>  
 
 
 
