@@ -41,3 +41,48 @@
     padding-bottom: 9px;
   }
 
+  #btnAddComment{
+    background-color: #7a1107;
+    border: none;
+  }
+
+  #btnAddComment:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonAddComment{
+    background-color: #7a1107;
+    border: none;
+  }
+
+  #buttonAddComment:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonNewProject{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonNewProject:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonCreateProject{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonCreateProject:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+

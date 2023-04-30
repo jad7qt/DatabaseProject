@@ -108,7 +108,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                 <p>No results found</p>
             <?php endif; ?>
 
-            <button type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
+            <button id="buttonNewProject" type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
             Add a New Project
             </button>
         </div>
