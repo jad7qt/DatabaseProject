@@ -22,7 +22,6 @@
 	    Too bad the menu has to be inside of the button
 	    but hey, it's pure CSS magic.
 	    -->
-		<?php ob_start(); ?>
 	    <ul id="menu">
 	      <a href="projects.php"><li>Projects</li></a>
 	      <a href="payments.php"><li>Payments</li></a>
@@ -30,6 +29,5 @@
 	      <a href="technicians.php"><li>View Technicians</li></a>
 	      <a href="#"><li>Contact</li></a>
 	    </ul>
-		<?php ob_end_flush(); ?>
 	  </div>
 	</nav>

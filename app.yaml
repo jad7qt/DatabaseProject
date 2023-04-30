@@ -11,6 +11,6 @@ handlers:
   static_dir: images
 
 - url: /.*
-  script: login.php
+  script: index.php
 
 # If your main page is index.php, comment the above entrypoint setting 
