@@ -117,10 +117,6 @@
     background-color: #7a1107;
   }
 
-  .techNames {
-    color: #7a1107;
-  }
-
   .plus-sign {
     display: inline-block;
     font-size: 20px;  /* adjust size as needed */
@@ -143,8 +139,7 @@
 }
 
 #techName{
-  background-color: red;
-  color:red;
+  color:#7a1107;
 }
 
   
