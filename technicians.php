@@ -38,9 +38,9 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
       <button type="submit">Search</button>
 
 <!--     ADD Technician if they arent in the system    --><?php if($_SESSION['Type'] == 'Administrator'){ ?>
-	<form action="addTechnician.php">
-    	<input class="techButton" type="submit" value="Add Technician"/>
-	</form>
+
+    <button type="button" class="techButton" onclick="window.location.href='addTechnician.php';" value="Add Technician">Add Technician</button>
+
 <?php } ?>
 
 </div>

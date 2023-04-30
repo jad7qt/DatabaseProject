@@ -37,7 +37,7 @@ if ( (!isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || $_SESSION
     <meta name="author" content="your name">
     <meta name="description" content="include some description about your page">
 
-    <title>Bootstrap example</title>
+    <title>Create Account</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -61,7 +61,7 @@ if ( (!isset($_SESSION['UserID']) && !isset($_SESSION['Username'])) || $_SESSION
         </div>
         <div class="row mb-3 mx-3">
             Password:
-            <input type="password" class="form-control" name="password" maslength=29 required />
+            <input type="password" class="form-control" name="password" maxlength=29 required />
         </div>
         <div class="row mb-3 mx-3">
             First Name:
