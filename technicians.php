@@ -39,7 +39,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 
 <!--     ADD Technician if they arent in the system    --><?php if($_SESSION['Type'] == 'Administrator'){ ?>
 
-    <button type="button" class="techButton" onclick="window.location.href='addTechnician.php';" value="Add Technician">Add Technician</button>
+    <button type="button" class="techButton" onclick="window.location.href='addTechnician.php';" value="Add Technician"> <span class="plus-sign">+</span>
+Add Technician</button>
 
 <?php } ?>
 
@@ -64,7 +65,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 				<tbody>
 					<?php foreach ($Technician as $item): ?>
 						<tr>
-                            <td class="techNames"><b><?php echo '<a href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
+                            <td class="techNames"><b><?php echo '<a id=techName" href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
 							<td><?php echo $item['OccupationType']; ?></td>
                             <td><?php echo $item['Rating']; ?></td>
 						</tr>
