@@ -48,11 +48,11 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
 <form name="mainForm" action="addPayment.php" method="post">
         <div class="row mb-3 mx-3">
             Payment Type:
-            <input type="text" class="form-control" name="username" required />
+            <input type="text" class="form-control" name="paymentType" required />
         </div>
         <div class="row mb-3 mx-3">
             Payment Amount:
-            <input type="text" class="form-control" name="password" required />
+            <input type="text" class="form-control" name="amount" required />
         </div>
         <input type="hidden" name="type" value="Technician" />
         <div id="button-layout"> 
@@ -67,10 +67,10 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
 <html>  
 <head></head>  
 <title>Static Dropdown List</title>  
-<body bgcolor="pink">  
+<body>  
 Payment Type:  
 <select>  
-  <option value="Select">Select</option>}  
+  <option value="Select">Select</option>
   <option value="Vineet">Cash</option>  
   <option value="Sumit">Debit Card</option>  
   <option value="Dorilal">Credit Card</option> 

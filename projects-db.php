@@ -67,4 +67,88 @@ function custProjTable($userID){
     return $Projects;
 }
 
+function getProject($pageID){
+    global $db;
+    $query1 = "SELECT Project.*, CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address,
+    CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, PhoneNumber.number as CustomerPhone, Tech.Name as Technician_Name, Tech.Type as Technician_Type
+    FROM Project
+    INNER JOIN (
+        SELECT CONCAT(User.firstName, ' ', User.lastName) as Name, User.UserID as ID, Technician.OccupationType as Type
+        FROM User
+        INNER JOIN Technician
+        ON User.UserID = Technician.UserID
+        WHERE User.Type = 'Technician') as Tech
+    ON Tech.ID = Project.TechnicianID
+    INNER JOIN User
+    ON Project.customerID = User.UserID
+    INNER JOIN PhoneNumber
+    ON PhoneNumber.userID = Project.customerID
+    INNER JOIN Customer
+    ON Customer.UserID = Project.CustomerID
+    WHERE Project.ProjectID = :pageID and PhoneNumber.type = 'mobile'";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':pageID', $pageID);
+    $statement1->execute();    
+    $Projects = $statement1->fetch();
+    $statement1->closeCursor();
+    return $Projects;    
+}
+
+
+function getComments($pageID){
+    global $db;
+    $query1 = "SELECT Comment.*, CONCAT (User.FirstName, ' ', User.LastName) as FullName
+    FROM Comment
+    INNER JOIN User
+    ON Comment.UserID = User.UserID
+    WHERE ProjectID = :pageID";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':pageID', $pageID);
+    $statement1->execute();    
+    $Projects = $statement1->fetchAll();
+    $statement1->closeCursor();
+    return $Projects; 
+}
+
+function getPayments($pageID){
+    global $db;
+    $query1 = "SELECT Payment.*
+    FROM Payment
+    WHERE Payment.ProjectID = :pageID";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':pageID', $pageID);
+    $statement1->execute();    
+    $Projects = $statement1->fetchAll();
+    $statement1->closeCursor();
+    return $Projects; 
+}
+
+function getInvoice($pageID){
+    global $db;
+    $query1 = "SELECT FORMAT(Invoice.TotalPrice, 'C') as TotalPrice, FORMAT(TP.Total_Payment, 'C') as Total_Payment,
+    FORMAT((Invoice.TotalPrice - TP.Total_Payment), 'C') as Remaining_Payment
+    FROM Invoice
+    INNER JOIN 
+        (SELECT Payment.ProjectID, SUM(Payment.Amount) as Total_Payment
+        FROM Payment
+        GROUP BY Payment.ProjectID
+        ORDER BY ProjectID) as TP
+    ON Invoice.ProjectID = TP.ProjectID
+    INNER JOIN Project
+    ON Project.ProjectID = Invoice.ProjectID
+    INNER JOIN User
+    ON Project.CustomerID = User.UserID
+    WHERE Project.ProjectID = :pageID";
+
+    $statement1 = $db->prepare($query1);
+    $statement1->bindValue(':pageID', $pageID);
+    $statement1->execute();    
+    $Projects = $statement1->fetch();
+    $statement1->closeCursor();
+    return $Projects; 
+}
+
 ?>
