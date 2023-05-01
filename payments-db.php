@@ -88,4 +88,36 @@ function getPrevPayments($UserID){
     return $result;
 }
 
+function addPaymentAdmin($projid, $type, $amount)
+{
+    global $db;
+    $query1 = "SELECT * FROM Payment 
+    WHERE ProjectID=:projid
+    ORDER BY PaymentID
+    LIMIT 1";
+    $stmt1 = $db->prepare($query1);
+    $stmt1->bindValue(':projid', $projid);
+    $stmt1->execute();
+    $result = $stmt1->fetchAll();
+    $stmt1->closeCursor();
+
+    if(!empty($result)){
+        $numOld = $result[0]['PaymentID'];
+        $newNum = $numOld + 1;
+    }else{
+        $newNum = 1;
+    }
+    $currenttime = date('Y-m-d');
+
+    $query2 = "INSERT INTO Payment(ProjectID, PaymentID, Type, Amount, Date) VALUES(:projid, :paymentid, :type, :amount, :date)";
+    $stmt2 = $db->prepare($query2);
+    $stmt2->bindValue(':projid', $projid);
+    $stmt2->bindValue(':paymentid', $newNum);
+    $stmt2->bindValue(':type', $type);
+    $stmt2->bindValue(':amount', $amount);
+    $stmt2->bindValue(':date', $currenttime);
+    $stmt2->execute();
+    $stmt2->closeCursor();
+}
+
 ?>

@@ -65,7 +65,7 @@ Add Technician</button>
 				<tbody>
 					<?php foreach ($Technician as $item): ?>
 						<tr>
-                            <td class="techNames"><b><?php echo '<a id=techName" href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
+						<td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
 							<td><?php echo $item['OccupationType']; ?></td>
                             <td><?php echo $item['Rating']; ?></td>
 						</tr>
