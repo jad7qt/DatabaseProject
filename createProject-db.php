@@ -1,4 +1,5 @@
 <?php
+require('payments-db.php');
 
 function selectAllTechs()
 {
@@ -55,6 +56,9 @@ function newProject($custid, $techid, $jobtype, $description, $startdate, $endda
     $statement3->bindValue(':projid', $projid);
     $statement3->execute();
     $statement3->closeCursor();
+
+    // ADD DOWN PAYMENT OF 20
+    addPaymentAdmin($projid, "credit", 20);
 }
 
 function postComment($projid, $userid, $comment)
