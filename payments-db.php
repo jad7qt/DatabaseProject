@@ -95,7 +95,7 @@ function addPaymentAdmin($projid, $type, $amount)
     global $db;
     $query1 = "SELECT * FROM Payment 
     WHERE ProjectID=:projid
-    ORDER BY PaymentID
+    ORDER BY PaymentID DESC
     LIMIT 1";
     $stmt1 = $db->prepare($query1);
     $stmt1->bindValue(':projid', $projid);
