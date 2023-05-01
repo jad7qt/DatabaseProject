@@ -125,16 +125,32 @@ function addPaymentAdmin($projid, $type, $amount)
 function getNoInvoices(){
     global $db;
     $stmt = $db->prepare("SELECT CONCAT(User.FirstName, ' ', User.LastName) as Customer_Name,
-    Project.JobType, Project.StartDate, Project.EndDate, Invoice.TotalPrice
+    Project.JobType, Project.StartDate, Project.EndDate, Invoice.ProjectID, Invoice.TotalPrice
     FROM Project
     INNER JOIN Invoice
     ON Invoice.ProjectID = Project.ProjectID
     INNER JOIN User
     ON User.UserID = Project.CustomerID
-    WHERE Invoice.TotalPrice IS NULL OR Invoice.ProjectID NOT IN (
-        SELECT Project.ProjectID
-        FROM Project)");
+    WHERE Invoice.TotalPrice IS NULL");
 
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $result;
+}
+
+function getTechInvoices($techID){
+    global $db;
+    $stmt = $db->prepare("SELECT CONCAT(User.FirstName, ' ', User.LastName) as Customer_Name,
+    Project.JobType, Project.StartDate, Project.EndDate, Invoice.ProjectID, Invoice.TotalPrice
+    FROM Project
+    INNER JOIN Invoice
+    ON Invoice.ProjectID = Project.ProjectID
+    INNER JOIN User
+    ON User.UserID = Project.CustomerID
+    WHERE Invoice.TotalPrice IS NULL and Project.TechnicianID = :techID");
+
+    $stmt->bindValue(':techID', $techID);
     $stmt->execute();
     $result = $stmt->fetchAll();
     $stmt->closeCursor();
