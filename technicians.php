@@ -89,4 +89,5 @@ Add Technician</button>
     header("Location: login.php");
     exit();
   }
+  ob_end_flush();
 ?>

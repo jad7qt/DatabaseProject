@@ -125,4 +125,5 @@ elseif ($_SESSION['Type'] == 'Customer') {
     header("Location: login.php");
     exit();
   }
+  ob_end_flush();
 ?>
