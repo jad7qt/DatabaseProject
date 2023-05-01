@@ -64,3 +64,7 @@ label[for="occupation-type"] {
 #infoBtn{
   color:#7a1107;
 }
+
+#btnSearch{
+  margin: 0px;
+}

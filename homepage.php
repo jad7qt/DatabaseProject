@@ -61,10 +61,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <div class="search-container">
     <form action="searchResults.php" method="POST">
       <label for="occupation-type">Search for a <b>Local Technician</b></label>
-      <div>
-      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
-      <button id="btnSearch" type="submit">Search</button>
-      </div>
+      <div style="display: flex; align-items: center;">
+  <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation" style="margin-right: 5px;">
+  <button id="btnSearch" type="submit">
+    <img src="images/search.png" alt="Search" style="max-width: 20px; max-height: 20px; filter: invert(1);">
+  </button>
+</div>
     </form>
 </div>
 
