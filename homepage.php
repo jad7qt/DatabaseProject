@@ -58,15 +58,17 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php include('hamburger.php'); ?>
 <!--hamburger-->
 
-<div class="search-container">
-    <form action="searchResults.php" method="POST">
-      <label for="occupation-type">Search for a <b>Local Technician</b></label>
-      <div>
-      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
-      <button id="btnSearch" type="submit">Search</button>
-      </div>
-    </form>
-</div>
+<?php if($_SESSION['Type'] != 'Technician'): ?>
+    <div class="search-container">
+        <form action="searchResults.php" method="POST">
+        <label for="occupation-type">Search for a <b>Local Technician</b></label>
+        <div>
+        <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
+        <button id="btnSearch" type="submit">Search</button>
+        </div>
+        </form>
+    </div>
+<?php endif; ?>
 
 <?php if($_SESSION['Type'] == 'Customer'): ?>
   <div class="results-container">
@@ -168,8 +170,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                             <th>Project Address</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <?php if($_SESSION['Type'] != 'Technician'): ?>
+                            <?php if($_SESSION['Type'] == 'Customer'): ?>
                                 <th>Technician Name</th>
+                            <?php elseif($_SESSION['Type'] == 'Technician'): ?>
+                                <th>Accept Job</th>
+                            <?php else: ?>
+                                <th>Assign Technician</th>
                             <?php endif; ?>                        
                             <th>Status</th>                        
 
@@ -189,8 +195,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <td><?php echo $item['Project_Address']; ?></td>
                                 <td><?php echo $item['StartDate']; ?></td>
                                 <td><?php echo $item['EndDate']; ?></td>
-                                <?php if($_SESSION['Type'] != 'Technician'): ?>
+                                <?php if($_SESSION['Type'] == 'Customer'): ?>
                                     <td><?php echo $item['Technician_Name']; ?></td>
+                                <?php elseif($_SESSION['Type'] == 'Technician'): ?>
+                                    <td><?php echo "Accept Job" ?></td>
+                                <?php else: ?>
+                                    <td><?php echo "Assign Technician" ?></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
