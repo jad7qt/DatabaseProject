@@ -74,19 +74,25 @@ if (!isset($_SESSION['Username'])){
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>ContractorConnections</h1>
-            <nav>
-                <ul>
-                    <!-- <li><a href="#">Home</a></li> -->
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header style="position: fixed; left: 0; top: 0; width: 100%;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center;">
+      <img src="images/logo_blank.png" alt="ContractorConnections Logo" style="max-width: 50px; max-height: 50px; margin-right: 10px;">
+      <h1 style="margin: 0;">ContractorConnections</h1>
+    </div>
+    <nav>
+      <ul style="display: flex; align-items: center; justify-content: flex-end; margin: 0;">
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.php">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+
 
     <main>
         <form action="login.php" method="post">
