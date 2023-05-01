@@ -9,14 +9,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Administrator
 {
     if (!empty($_POST['actionBtn']) && ($_POST['actionBtn'] == "Assign Tech"))
     {
-        acceptJob($_POST['techid'], $_GET['id']);
-        header("Location: projects.php");
+        acceptJob($_POST['techid'], $_POST['projid']);
+        header("Location: homepage.php");
         exit();
     }
     
 }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] == 'Technician'){
-    header("Location: createProject.php?error=Only Customers can create a new project");
-
+    header("Location: assignTech.php?error=Only Admins can assign Technicians");
 }
 ?>
 
@@ -63,6 +62,7 @@ if ( isset($_SESSION['UserID']) && isset($_SESSION['Username'])) {
                 <?php endforeach; ?>
             </select>
         </div>
+        <input type="hidden" name="projid" value="<?php echo $projid;?>" />
         <div id="button-layout">
         <input id="buttonAssignTech" type="submit" class="btn btn-primary" name="actionBtn" value="Assign Tech" title="class to assign Tech" />
         <button id="backBtn" type="button" onclick="window.location.href='homepage.php';" name="actionBtn" value="Back">Back</button>
