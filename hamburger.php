@@ -27,7 +27,7 @@
 	      <a href="payments.php"><li>Payments</li></a>
 	      <a href="profile.php?id="<?php $_SESSION['UserID']?>><li>Profile</li></a>
 	      <a href="technicians.php"><li>View Technicians</li></a>
-	      <a href="contact-loggedin.php"><li>Contact</li></a>
+	      <a href="contact-loggedin.php" id="contact"><li>Contact</li></a>
 	    </ul>
 	  </div>
 	</nav>
