@@ -98,7 +98,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                             <th> Details </th>
                             <?php if($_SESSION['Type'] != 'Customer'): ?>
                                 <th>Customer Name</th>
-                                <th>Customer Phone</th>
                             <?php endif; ?>
                             <th>Project Type</th>
                             <th>Description</th>
@@ -121,7 +120,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 </td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
-                                    <td><?php echo $item['CustomerPhone']; ?></td>
                                 <?php endif; ?>
                                 <td><?php echo $item['JobType']; ?></td>
                                 <td><?php echo $item['Description']; ?></td>                            
@@ -167,7 +165,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                             <th> Details </th>
                             <?php if($_SESSION['Type'] != 'Customer'): ?>
                                 <th>Customer Name</th>
-                                <th>Customer Phone</th>
                             <?php endif; ?>
                             <th>Project Type</th>
                             <th>Description</th>
@@ -194,7 +191,6 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 </td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
-                                    <td><?php echo $item['CustomerPhone']; ?></td>
                                 <?php endif; ?>
                                 <td><?php echo $item['JobType']; ?></td>
                                 <td><?php echo $item['Description']; ?></td>                            
