@@ -26,8 +26,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   }
 
   elseif ($_SESSION['Type'] == 'Customer') {
-    $projects = getCustProjs($userID, 'no');
-    $prevProjects = getCustProjs($userID, 'yes');
+    $projects = getCustProjs($userID, 0);
+    $prevProjects = getCustProjs($userID, 1);
     $table2 = $prevProjects;
     $amountOwed = getAmountOwed($userID);
     $amountOwed = $amountOwed['Total_Remaining_Payment'];
