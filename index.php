@@ -18,6 +18,15 @@ switch (@parse_url($_SERVER['REQUEST_URI'])['path']) {
     case '/addTechnician.php':
         require 'addTechnician.php';
         break;
+    case '/assignPrice.php':
+        require 'assignPrice.php';
+        break;
+    case '/assignTech.php':
+        require 'assignTech.php';
+        break;
+    case '/contact-loggedin.php':
+        require 'contact-loggedin.php';
+        break;
     case '/contact.php':
         require 'contact.php';
         break;
