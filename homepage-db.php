@@ -34,7 +34,7 @@ function getTechProjs($userID){
     ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :techID and Project.completed = 'no'
+    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :techID and Project.completed = 0
     ORDER BY Project.startDate
     LIMIT 3";
 
@@ -58,7 +58,7 @@ function getUnassigned(){
     ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = NULL
+    WHERE PhoneNumber.type = 'mobile' and Project.technicianID IS NULL
     ORDER BY Project.startDate";
 
     $statement1 = $db->prepare($query1);
