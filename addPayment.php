@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['Type'] != 'Technician')
     }
 }
 
-if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Type'] == "Administrator") {
+if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && ($_SESSION['Type'] == "Administrator" || $_SESSION['Type'] == "Customer") ) {
     $pageID = $_GET['id'];
 ?>
 
