@@ -72,10 +72,10 @@ function getProject($pageID){
     $query1 = "SELECT Project.*, CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address,
     CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, PhoneNumber.number as CustomerPhone, Tech.Name as Technician_Name, Tech.Type as Technician_Type
     FROM Project
-    INNER JOIN (
+    LEFT JOIN (
         SELECT CONCAT(User.firstName, ' ', User.lastName) as Name, User.UserID as ID, Technician.OccupationType as Type
         FROM User
-        LEFT JOIN Technician
+        INNER JOIN Technician
         ON User.UserID = Technician.UserID
         WHERE User.Type = 'Technician') as Tech
     ON Tech.ID = Project.TechnicianID
