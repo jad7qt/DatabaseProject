@@ -77,7 +77,7 @@ function getProject($pageID){
     ON Project.customerID = User.UserID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE Project.ProjectID = :pageID and PhoneNumber.type = 'mobile'";
+    WHERE Project.ProjectID = :pageID ";
 
     $statement1 = $db->prepare($query1);
     $statement1->bindValue(':pageID', $pageID);
