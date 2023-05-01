@@ -5,7 +5,7 @@ function getCustProjs($userID, $completed){
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Technician_Name, 
     CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address
     FROM Project
-    INNER JOIN User
+    LEFT JOIN User
     ON Project.TechnicianID = User.UserID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID

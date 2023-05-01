@@ -114,7 +114,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             </tr>
         <tbody>
             <tr>
-                <td><?php echo $project['Technician_Name']; ?></td>
+                <td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$project['TechnicianID'].'">'.$project['Technician_Name'].'</a>'; ?></b></td>
                 <td><?php echo $project['Technician_Type']; ?></td>
             </tr>
         </tbody>

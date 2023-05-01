@@ -89,7 +89,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                                 <td><?php echo $item['StartDate']; ?></td>
                                 <td><?php echo $item['EndDate']; ?></td>
                                 <?php if($_SESSION['Type'] != 'Technician'): ?>
-                                    <td><?php echo $item['Technician_Name']; ?></td>
+                                    <td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['TechnicianID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
