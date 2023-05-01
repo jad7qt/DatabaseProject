@@ -78,7 +78,7 @@ if (!isset($_SESSION['Username'])){
   <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
     <div style="display: flex; align-items: center;">
       <img src="images/logo_blank.png" alt="ContractorConnections Logo" style="max-width: 50px; max-height: 50px; margin-right: 10px;">
-      <h1 style="margin: 0;">ContractorConnections</h1>
+      <h1 style="margin: 0;">ContractorConnector</h1>
     </div>
     <nav>
       <ul style="display: flex; align-items: center; justify-content: flex-end; margin: 0;">
@@ -118,7 +118,7 @@ if (!isset($_SESSION['Username'])){
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 ContractorConnections. All Rights Reserved.</p>
+            <p>&copy; 2023 ContractorConnector. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
