@@ -66,7 +66,9 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     <td><?php echo $item['EndDate']; ?></td>
                     <td><?php echo $item['Remaining_Payment']; ?></td>
                     <?php if($_SESSION['Type'] != "Technician"){ ?>
-                      <td><?php echo '<a id="paymentBtnn" href="addPayment.php?id='.$item['ProjectID'].'">Add Payment</a>'; ?></td>
+                      <td style="text-align: center;">
+  <?php echo '<a id="paymentBtnn" href="addPayment.php?id='.$item['ProjectID'].'"><img src="images/pay.png" alt="Pay" style="width: 30px; height: 30px;"></a>'; ?>
+</td>
                     <?php } ?>
 						    </tr>
 					<?php endforeach; ?>

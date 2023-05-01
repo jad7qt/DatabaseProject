@@ -95,7 +95,7 @@ header {
 header .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 20px;
@@ -140,7 +140,7 @@ footer {
 footer .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 20px;
