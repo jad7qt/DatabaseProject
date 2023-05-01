@@ -175,12 +175,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <div class="results-container">
             <?php if (count($AVGRating) > 0): ?>
                 <table>
-                    <thead> Technician Avg. Rating</thead>
+                <thead id="rating" >Technician Average Rating</thead>
                     <tbody>
                         <?php
                         foreach ($AVGRating as $item): ?>
                             <tr>
-                            <td><?php echo $item['AVGRating']; ?></td>
+                            <td><img src="images/star.png" alt="Star" style="width: 20px; height: 20px;"> <?php echo $item['AVGRating']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>  
