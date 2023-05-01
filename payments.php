@@ -9,6 +9,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 
     $Payments = array();
     $prevPayments = array();
+    $invoices = getNoInvoices();
 
   // Display Payments
 
@@ -82,7 +83,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php if($_SESSION['Type'] == 'Customer'){ ?>
   <div class="results-container">
 		<h3>Previous Payments</h3>
-		<?php if (count($Payments) > 0 ): ?>
+		<?php if (count($prevPayments) > 0 ): ?>
 			<table>
 				<thead>
 					<tr>
@@ -103,6 +104,38 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     <td><?php echo $item['Amount']; ?></td>
                     <td><?php echo $item['Type']; ?></td>
                     <td><?php echo $item['Date']; ?></td>
+						    </tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php else: ?>
+			<p>No results found.</p>
+		<?php endif; ?>
+	</div> 
+  <?php } else { ?>
+  <div class="results-container">
+		<h3>Projects without Invoices</h3>
+		<?php if (count($invoices) > 0 ): ?>
+			<table>
+				<thead>
+					<tr>
+              <th>Customer Name</th>
+              <th>Job Type</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Assign Price</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+              foreach ($prevPayments as $item): ?>
+						    <tr>
+                    <td><?php echo $item['Customer_Name']; ?></td>
+                    <td><?php echo $item['JobType']; ?></td>
+                    <td><?php echo $item['StartDate']; ?></td>
+                    <td><?php echo $item['EndDate']; ?></td>
+                    <td><?php echo "Assign Price"; ?></td>
 						    </tr>
 					<?php endforeach; ?>
 				</tbody>
