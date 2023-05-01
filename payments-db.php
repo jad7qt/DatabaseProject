@@ -76,7 +76,8 @@ function cust_payments($UserID){
 
 function getPrevPayments($UserID){
     global $db;
-    $stmt = $db->prepare("SELECT Payment.*, Project.JobType, Project.CustomerID
+    $stmt = $db->prepare("SELECT FORMAT(Payment.Amount, 'C') as Amount, Payment.Type, Payment.PaymentID,
+    Payment.Date, Project.JobType, Project.CustomerID
     FROM Payment
     INNER JOIN Project
     ON Payment.ProjectID = Project.ProjectID
