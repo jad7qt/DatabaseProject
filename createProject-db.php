@@ -49,7 +49,6 @@ function newProject($custid, $techid, $jobtype, $description, $startdate, $endda
     $projectResult = $statement4->fetchALL();
     $statement4->closeCursor();
     $projid = $projectResult[0]['ProjectID'];
-    return $projid;
 
     $query3 = "INSERT INTO Invoice(ProjectID) VALUES(:projid)";
     $statement3 = $db->prepare($query3);
