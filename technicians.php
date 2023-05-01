@@ -69,9 +69,12 @@ Add Technician</button>
 						<tr>
 						<td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
 							<td><?php echo $item['OccupationType']; ?></td>
-                            <td><?php echo $item['Rating']; ?></td>
-						</tr>
-					<?php endforeach; ?>
+							<td>
+  <?php if ($item['Rating']): ?>
+    <img src="images/star.png" alt="Star" style="width: 20px; height: 20px;">
+    <?php echo $item['Rating']; ?>
+  <?php endif; ?>
+</td>					<?php endforeach; ?>
 				</tbody>
 			</table>
 		<?php else: ?>
