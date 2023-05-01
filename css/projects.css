@@ -8,7 +8,7 @@
     border: 1px solid #ccc;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     background-color: #f7f7f7;
-    margin-top: 30px;
+    margin-top: 60px;
   }
 
   h3 {
@@ -131,4 +131,60 @@
 
 .no-results {
   color: black;
+}
+
+.center-text {
+  text-align: center;
+}
+
+#addCommentBtn{
+  margin-top: 15px;
+  background-color: #7a1107;
+  border:none;
+}
+
+#addCommentBtn:hover{
+  margin-top: 15px;
+  background-color: #b6190b;
+  border:none;
+}
+
+
+.content-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-content {
+  margin-right: 10px; /* Adds some space between the text and the button */
+}
+
+.delete-btn {
+  color: white;
+  background-color: #7a1107;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px; 
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px; 
+}
+.no-results {
+  color: black;
+}
+
+#delBtn{
+  background-color:#7a1107;
+  border:none;
+  width: 25px;  /* Adjust as needed */
+  height: 25px; /* Adjust as needed */
+  padding: 0;   /* Remove padding */
+  font-size: 10px; /* Adjust as needed */
+}
+
+#delBtn:hover{
+  background-color:#b6190b;
+  border:none;
 }
