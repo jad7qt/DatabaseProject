@@ -173,10 +173,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                             <th>End Date</th>
                             <?php if($_SESSION['Type'] == 'Customer'): ?>
                                 <th>Technician Name</th>
-                            <?php elseif($_SESSION['Type'] == 'Technician'): ?>
+                            <?php elseif($_SESSION['Type'] == 'Administrator'): ?>
                                 <th>Accept Job</th>
-                            <?php else: ?>
-                                <th>Assign Technician</th>
                             <?php endif; ?>                        
                             <th>Status</th>                        
 
@@ -199,9 +197,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <td><?php echo $item['EndDate']; ?></td>
                                 <?php if($_SESSION['Type'] == 'Customer'): ?>
                                     <td><?php echo $item['Technician_Name']; ?></td>
-                                <?php elseif($_SESSION['Type'] == 'Technician'): ?>
-                                    <td><?php echo "Accept Job" ?></td>
-                                <?php else: ?>
+                                <?php elseif($_SESSION['Type'] == 'Administrator'): ?>
                                     <td class="text-center">
   <?php echo '<a id="red" href="assignTech.php?id='.$item['ProjectID'].'"><img src="images/signup.png" alt="Assign Technician" width=40" height="40"></a>'; ?>
 </td>
