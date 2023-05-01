@@ -26,8 +26,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   }
 
   elseif ($_SESSION['Type'] == 'Customer') {
-    $projects = getCustProjs($userID, 'no');
-    $prevProjects = getCustProjs($userID, 'yes');
+    $projects = getCustProjs($userID, 0);
+    $prevProjects = getCustProjs($userID, 1);
     $table2 = $prevProjects;
     $amountOwed = getAmountOwed($userID);
     $amountOwed = $amountOwed['Total_Remaining_Payment'];
@@ -61,12 +61,10 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <div class="search-container">
     <form action="searchResults.php" method="POST">
       <label for="occupation-type">Search for a <b>Local Technician</b></label>
-      <div style="display: flex; align-items: center;">
-  <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation" style="margin-right: 5px;">
-  <button id="btnSearch" type="submit">
-    <img src="images/search.png" alt="Search" style="max-width: 20px; max-height: 20px; filter: invert(1);">
-  </button>
-</div>
+      <div>
+      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
+      <button id="btnSearch" type="submit">Search</button>
+      </div>
     </form>
 </div>
 
@@ -174,8 +172,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                             <th>Project Address</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <?php if($_SESSION['Type'] != 'Technician'): ?>
+                            <?php if($_SESSION['Type'] == 'Customer'): ?>
                                 <th>Technician Name</th>
+                            <?php elseif($_SESSION['Type'] == 'Technician'): ?>
+                                <th>Accept Job</th>
+                            <?php else: ?>
+                                <th>Assign Technician</th>
                             <?php endif; ?>                        
                             <th>Status</th>                        
 
@@ -197,8 +199,12 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <td><?php echo $item['Project_Address']; ?></td>
                                 <td><?php echo $item['StartDate']; ?></td>
                                 <td><?php echo $item['EndDate']; ?></td>
-                                <?php if($_SESSION['Type'] != 'Technician'): ?>
+                                <?php if($_SESSION['Type'] == 'Customer'): ?>
                                     <td><?php echo $item['Technician_Name']; ?></td>
+                                <?php elseif($_SESSION['Type'] == 'Technician'): ?>
+                                    <td><?php echo "Accept Job" ?></td>
+                                <?php else: ?>
+                                    <td><?php echo "Assign Technician" ?></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
