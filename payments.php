@@ -9,15 +9,17 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 
     $Payments = array();
     $prevPayments = array();
-    $invoices = getNoInvoices();
+    $invoice = array();
 
   // Display Payments
 
 	//admin outstanding payments query
   if($_SESSION['Type']=='Administrator'){
     $Payments = admin_payments();
+    $invoices = getNoInvoices();
   }elseif($_SESSION['Type']=='Technician'){
     $Payments = tech_payments($_SESSION['UserID']);
+    $invoices = getTechInvoices($_SESSION['UserID']);
   }else{
     $Payments = cust_payments($_SESSION['UserID']);
     $prevPayments = getPrevPayments($_SESSION['UserID']);
@@ -131,13 +133,13 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 				</thead>
 				<tbody>
 					<?php 
-              foreach ($prevPayments as $item): ?>
+              foreach ($invoices as $item): ?>
 						    <tr>
                     <td><?php echo $item['Customer_Name']; ?></td>
                     <td><?php echo $item['JobType']; ?></td>
                     <td><?php echo $item['StartDate']; ?></td>
                     <td><?php echo $item['EndDate']; ?></td>
-                    <td><?php echo "Assign Price"; ?></td>
+                    <td><?php echo '<a href="assignPrice.php?id='.$item['ProjectID'].'">Assign Price</a>'; ?></td>
 						    </tr>
 					<?php endforeach; ?>
 				</tbody>

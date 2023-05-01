@@ -63,17 +63,19 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
       <label for="occupation-type">Search for a <b>Local Technician</b></label>
       <div>
       <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
-      <button id="btnSearch" type="submit">Search</button>
+      <button type="submit">
+  <img src="images/search.png" alt="Search" style="max-width: 20px; max-height: 20px; filter: invert(1);">
+</button>
       </div>
     </form>
 </div>
 
 <?php if($_SESSION['Type'] == 'Customer'): ?>
-  <div class="results-container">
-    <h3>Total Outstanding Balance</h3>
-    <div class="amount-owed">
-        <?php echo '$' . $amountOwed; ?>
-    </div>
+    <div class="results-container">
+  <h3>Total Outstanding Balance</h3>
+  <div class="amount-owed">
+    <?php echo '$' . (empty($amountOwed) ? "0" : $amountOwed); ?>
+  </div>
 </div>
 <?php endif; ?>
 
@@ -204,7 +206,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <?php elseif($_SESSION['Type'] == 'Technician'): ?>
                                     <td><?php echo "Accept Job" ?></td>
                                 <?php else: ?>
-                                    <td><?php echo "Assign Technician" ?></td>
+                                    <td><?php echo '<a href="assignTech.php?id='.$item['ProjectID'].'">Assign Technician</a>'; ?></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
@@ -220,7 +222,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </tbody>
                 </table>
             <?php else: ?> 
-                <p>No results found</p>
+                <p class="no-results">No results found</p>
             <?php endif; ?>
   </div>
 
