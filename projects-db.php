@@ -2,7 +2,7 @@
 function adminMasterTable(){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address,
-    CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, PhoneNumber.number as CustomerPhone, Tech.Name as Technician_Name
+    CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Tech.Name as Technician_Name
     FROM Project
     LEFT JOIN (
         SELECT CONCAT(User.firstName, ' ', User.lastName) as Name, User.UserID as ID
@@ -11,11 +11,8 @@ function adminMasterTable(){
     ON Tech.ID = Project.TechnicianID
     INNER JOIN User
     ON Project.customerID = User.UserID
-    INNER JOIN PhoneNumber
-    ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
-    ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' ";
+    ON Customer.UserID = Project.CustomerID ";
     $statement1 = $db->prepare($query1);
     $statement1->execute();    
     $Projects = $statement1->fetchAll();
@@ -27,15 +24,12 @@ function techProjTable($userID){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, 
     CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address, 
-    PhoneNumber.number as CustomerPhone
     FROM Project
     INNER JOIN User
     ON Project.customerID = User.UserID
-    INNER JOIN PhoneNumber
-    ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :userID
+    WHERE Project.technicianID = :userID
     ORDER BY Project.startDate; ";
 
     $statement1 = $db->prepare($query1);
@@ -70,7 +64,7 @@ function custProjTable($userID){
 function getProject($pageID){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address,
-    CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, PhoneNumber.number as CustomerPhone, Tech.Name as Technician_Name, Tech.Type as Technician_Type
+    CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, Tech.Name as Technician_Name, Tech.Type as Technician_Type
     FROM Project
     LEFT JOIN (
         SELECT CONCAT(User.firstName, ' ', User.lastName) as Name, User.UserID as ID, Technician.OccupationType as Type
@@ -81,8 +75,6 @@ function getProject($pageID){
     ON Tech.ID = Project.TechnicianID
     INNER JOIN User
     ON Project.customerID = User.UserID
-    INNER JOIN PhoneNumber
-    ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
     WHERE Project.ProjectID = :pageID and PhoneNumber.type = 'mobile'";

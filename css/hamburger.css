@@ -126,7 +126,9 @@
   {
   position: absolute;
   width: 130px;
-  margin: -77px 0 0 -50px;
+  margin-left: -50px;
+  margin-top: -77px;
+  margin-bottom: 500px;
   padding: 50px;
   padding-top: 85px;
   padding-bottom: 35px;
@@ -148,6 +150,10 @@
   font-size: 22px;
   }
   
+  #contact{
+    margin-bottom: 500px;
+  }
+
   /*
   * And let's slide it in from the left
   */
