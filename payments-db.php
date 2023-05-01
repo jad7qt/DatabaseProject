@@ -76,12 +76,81 @@ function cust_payments($UserID){
 
 function getPrevPayments($UserID){
     global $db;
-    $stmt = $db->prepare("SELECT Payment.*, Project.JobType, Project.CustomerID
+    $stmt = $db->prepare("SELECT FORMAT(Payment.Amount, 'C') as Amount, Payment.Type, Payment.PaymentID,
+    Payment.Date, Project.JobType, Project.CustomerID
     FROM Payment
     INNER JOIN Project
     ON Payment.ProjectID = Project.ProjectID
     WHERE Project.CustomerID = :UserID;");
+
     $stmt->bindValue(':UserID', $UserID);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $result;
+}
+
+function addPaymentAdmin($projid, $type, $amount)
+{
+    global $db;
+    $query1 = "SELECT * FROM Payment 
+    WHERE ProjectID=:projid
+    ORDER BY PaymentID
+    LIMIT 1";
+    $stmt1 = $db->prepare($query1);
+    $stmt1->bindValue(':projid', $projid);
+    $stmt1->execute();
+    $result = $stmt1->fetchAll();
+    $stmt1->closeCursor();
+
+    if(!empty($result)){
+        $numOld = $result[0]['PaymentID'];
+        $newNum = $numOld + 1;
+    }else{
+        $newNum = 1;
+    }
+    $currenttime = date('Y-m-d');
+
+    $query2 = "INSERT INTO Payment(ProjectID, PaymentID, Type, Amount, Date) VALUES(:projid, :paymentid, :type, :amount, :date)";
+    $stmt2 = $db->prepare($query2);
+    $stmt2->bindValue(':projid', $projid);
+    $stmt2->bindValue(':paymentid', $newNum);
+    $stmt2->bindValue(':type', $type);
+    $stmt2->bindValue(':amount', $amount);
+    $stmt2->bindValue(':date', $currenttime);
+    $stmt2->execute();
+    $stmt2->closeCursor();
+}
+
+function getNoInvoices(){
+    global $db;
+    $stmt = $db->prepare("SELECT CONCAT(User.FirstName, ' ', User.LastName) as Customer_Name,
+    Project.JobType, Project.StartDate, Project.EndDate, Invoice.ProjectID, Invoice.TotalPrice
+    FROM Project
+    INNER JOIN Invoice
+    ON Invoice.ProjectID = Project.ProjectID
+    INNER JOIN User
+    ON User.UserID = Project.CustomerID
+    WHERE Invoice.TotalPrice IS NULL");
+
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $result;
+}
+
+function getTechInvoices($techID){
+    global $db;
+    $stmt = $db->prepare("SELECT CONCAT(User.FirstName, ' ', User.LastName) as Customer_Name,
+    Project.JobType, Project.StartDate, Project.EndDate, Invoice.ProjectID, Invoice.TotalPrice
+    FROM Project
+    INNER JOIN Invoice
+    ON Invoice.ProjectID = Project.ProjectID
+    INNER JOIN User
+    ON User.UserID = Project.CustomerID
+    WHERE Invoice.TotalPrice IS NULL and Project.TechnicianID = :techID");
+
+    $stmt->bindValue(':techID', $techID);
     $stmt->execute();
     $result = $stmt->fetchAll();
     $stmt->closeCursor();

@@ -2,7 +2,7 @@
   /* Search Results */
 
   .results-container {
-    margin: 50px auto;
+    margin: 30px auto;
     max-width: 800px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -40,3 +40,132 @@
     padding-bottom: 9px;
   }
 
+  #buttonRed{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonRed:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonAddPhone{
+    background-color: #7a1107;
+    border: none;
+  }
+
+  #buttonAddPhone:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+
+  #updateProfileBtn{
+    text-align: center;
+    background-color: #7a1107;
+    border: none;
+    position: relative;
+    height: 60px;
+    width: 150px;
+  }
+
+  #updateProfileBtn:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #centerAlign{
+    margin-left: 45%;
+  }
+
+  #buttonRate{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonRate:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #buttonCreateCustomer{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonCreateCustomer:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonDeleteRating{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonDeleteRating:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+
+  #buttonUpdateRating{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+  #buttonUpdateRating:hover{
+    background-color: #b6190b;
+    border: none;
+  }
+
+  #buttonUpdateUser{
+    background-color: #7a1107;
+    border: none;
+    margin-top: 15px;
+  }
+
+
+  #buttonCreateProject{
+    background-color:#7a1107;
+    height: 45px;
+    
+    margin:0px;
+    margin-right: 15px;
+    border:0px;
+}
+
+
+#buttonCreateProject:hover{
+    background-color: #b6190b;
+    ;
+}
+
+#backBtn{
+    height: 45px;
+    align-items: center;
+
+}
+
+
+#text{
+  color: black;
+}
+
+
+#ratingNum{
+  margin-top: 50px;
+}
+
+#rating{
+  color: black;
+}

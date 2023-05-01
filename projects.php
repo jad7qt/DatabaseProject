@@ -78,7 +78,9 @@ elseif ($_SESSION['Type'] == 'Customer') {
                         <?php 
                         foreach ($Projects as $item): ?>
                             <tr>
-                                <td> <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
+                            <td>
+  <?php echo '<a id="detailsRed" href="projectDetails.php?id='.$item['ProjectID'].'"><img src="images/info.png" alt="Info" style="max-width: 30px; max-height: 30px;"></a>'; ?>
+</td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>
@@ -89,7 +91,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                                 <td><?php echo $item['StartDate']; ?></td>
                                 <td><?php echo $item['EndDate']; ?></td>
                                 <?php if($_SESSION['Type'] != 'Technician'): ?>
-                                    <td><?php echo $item['Technician_Name']; ?></td>
+                                    <td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['TechnicianID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
@@ -108,9 +110,11 @@ elseif ($_SESSION['Type'] == 'Customer') {
                 <p>No results found</p>
             <?php endif; ?>
 
-            <button type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
-            Add a New Project
-            </button>
+            <?php if($_SESSION['Type'] == 'Customer'): ?>
+                <button id="buttonNewProject" type="button" onclick="window.location.href='createProject.php'" class="btn btn-primary">
+                Add a New Project
+                </button>
+            <?php endif; ?>
         </div>
 
 </body>

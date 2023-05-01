@@ -35,11 +35,14 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
       <label for="occupation-type">Search for a <b>Technician</b></label>
 	  <div>
       <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Name">
-      <button type="submit">Search</button>
+      <button type="submit">
+  <img src="images/search.png" alt="Search" style="max-width: 20px; max-height: 20px; filter: invert(1);">
+</button>
 
 <!--     ADD Technician if they arent in the system    --><?php if($_SESSION['Type'] == 'Administrator'){ ?>
 
-    <button type="button" class="techButton" onclick="window.location.href='addTechnician.php';" value="Add Technician">Add Technician</button>
+    <button type="button" class="techButton" onclick="window.location.href='addTechnician.php';" value="Add Technician"> <span class="plus-sign">+</span>
+Add Technician</button>
 
 <?php } ?>
 
@@ -64,11 +67,14 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 				<tbody>
 					<?php foreach ($Technician as $item): ?>
 						<tr>
-                            <td class="techNames"><b><?php echo '<a href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
+						<td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['userID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
 							<td><?php echo $item['OccupationType']; ?></td>
-                            <td><?php echo $item['Rating']; ?></td>
-						</tr>
-					<?php endforeach; ?>
+							<td>
+  <?php if ($item['Rating']): ?>
+    <img src="images/star.png" alt="Star" style="width: 20px; height: 20px;">
+    <?php echo $item['Rating']; ?>
+  <?php endif; ?>
+</td>					<?php endforeach; ?>
 				</tbody>
 			</table>
 		<?php else: ?>
