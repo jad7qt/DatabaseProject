@@ -136,7 +136,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                         if ($item['Completed'] == "1") {
                                             echo '<img src="images/check.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         } else {
-                                            echo "Ongoing";
+                                            echo '<img src="images/ongoing.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         }
                                     ?>
                                 </td>
@@ -206,14 +206,16 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <?php elseif($_SESSION['Type'] == 'Technician'): ?>
                                     <td><?php echo "Accept Job" ?></td>
                                 <?php else: ?>
-                                    <td><?php echo '<a href="assignTech.php?id='.$item['ProjectID'].'">Assign Technician</a>'; ?></td>
+                                    <td class="text-center">
+  <?php echo '<a id="red" href="assignTech.php?id='.$item['ProjectID'].'"><img src="images/signup.png" alt="Assign Technician" width=40" height="40"></a>'; ?>
+</td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
                                         if ($item['Completed'] == "1") {
                                             echo '<img src="images/check.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         } else {
-                                            echo "Ongoing";
+                                            echo '<img src="images/ongoing.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         }
                                     ?>
                                 </td>
