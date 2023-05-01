@@ -73,7 +73,9 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <?php if($_SESSION['Type'] == 'Customer'): ?>
   <div class="results-container">
     <h3>Total Outstanding Balance</h3>
-    <?php echo $amountOwed ?>
+    <div class="amount-owed">
+        <?php echo '$' . $amountOwed; ?>
+    </div>
 </div>
 <?php endif; ?>
 
@@ -141,7 +143,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </tbody>
                 </table>
             <?php else: ?> 
-                <p>No results found</p>
+                <p class="no-results">No results found</p>
             <?php endif; ?>
   </div>
 
@@ -216,7 +218,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </tbody>
                 </table>
             <?php else: ?> 
-                <p>No results found</p>
+                <p class="no-results">No results found</p>
             <?php endif; ?>
   </div>
 
