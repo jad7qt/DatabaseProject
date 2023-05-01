@@ -92,13 +92,11 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             <tr>
                 <th>Name</th>
                 <th>Address </th>
-                <th>Primary Phone</th>
             </tr>
         <tbody>
             <tr>
                 <td><?php echo $project['Customer_Name']; ?></td>
                 <td><?php echo $project['Project_Address']; ?></td>
-                <td><?php echo $project['CustomerPhone']; ?></td>
             </tr>
         </tbody>
     </table>
