@@ -99,7 +99,7 @@ if (!isset($_SESSION['Username'])){
             <label>Password</label>
             <input type="password" name="password" placeholder="Password"><br>
             <button class="btnlogin" type="submit" name="actionBtn" value="Login">Login</button>
-            <button type="button" onclick="window.location.href='addCustomer.php';" name="actionBtn" value="SignUp">SignUp</button>
+            <button id="signUpBtn" type="button" onclick="window.location.href='addCustomer.php';" name="actionBtn" value="SignUp">SignUp</button>
         </form>
     </main>
 
