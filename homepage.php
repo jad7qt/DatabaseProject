@@ -26,8 +26,8 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
   }
 
   elseif ($_SESSION['Type'] == 'Customer') {
-    $projects = getCustProjs($userID, 'no');
-    $prevProjects = getCustProjs($userID, 'yes');
+    $projects = getCustProjs($userID, 0);
+    $prevProjects = getCustProjs($userID, 1);
     $table2 = $prevProjects;
     $amountOwed = getAmountOwed($userID);
     $amountOwed = $amountOwed['Total_Remaining_Payment'];
@@ -123,7 +123,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <td><?php echo $item['StartDate']; ?></td>
                                 <td><?php echo $item['EndDate']; ?></td>
                                 <?php if($_SESSION['Type'] != 'Technician'): ?>
-                                    <td><?php echo $item['Technician_Name']; ?></td>
+                                  <td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$item['TechnicianID'].'">'.$item['Technician_Name'].'</a>'; ?></b></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
