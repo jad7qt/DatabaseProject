@@ -142,4 +142,16 @@
   color:#7a1107;
 }
 
-  
+#btnSearch{
+  margin: 0px;
+}
+
+.star {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #ffdf00;
+  border-left: 10px solid transparent;
+  transform: rotate(35deg);
+}

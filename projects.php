@@ -78,7 +78,9 @@ elseif ($_SESSION['Type'] == 'Customer') {
                         <?php 
                         foreach ($Projects as $item): ?>
                             <tr>
-                                <td> <?php echo '<a id="detailsRed" href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
+                            <td>
+  <?php echo '<a id="detailsRed" href="projectDetails.php?id='.$item['ProjectID'].'"><img src="images/info.png" alt="Info" style="max-width: 30px; max-height: 30px;"></a>'; ?>
+</td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>
