@@ -61,17 +61,21 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
 <div class="search-container">
     <form action="searchResults.php" method="POST">
       <label for="occupation-type">Search for a <b>Local Technician</b></label>
-      <div>
-      <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation">
-      <button id="btnSearch" type="submit">Search</button>
-      </div>
+      <div style="display: flex; align-items: center;">
+  <input type="text" id="occupation-type" name="occupation-type" placeholder="Enter Occupation" style="margin-right: 5px;">
+  <button id="btnSearch" type="submit">
+    <img src="images/search.png" alt="Search" style="max-width: 20px; max-height: 20px; filter: invert(1);">
+  </button>
+</div>
     </form>
 </div>
 
 <?php if($_SESSION['Type'] == 'Customer'): ?>
   <div class="results-container">
     <h3>Total Outstanding Balance</h3>
-    <?php echo $amountOwed ?>
+    <div class="amount-owed">
+        <?php echo '$' . $amountOwed; ?>
+    </div>
 </div>
 <?php endif; ?>
 
@@ -112,7 +116,9 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                         <?php 
                         foreach ($projects as $item): ?>
                             <tr>
-                                <td> <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
+                            <td>
+  <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'"><img id="infoImg" src="images/info.png" alt="Project Info" style="max-width: 30px; max-height: 30px;"></a>'; ?>
+</td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>
@@ -139,7 +145,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                     </tbody>
                 </table>
             <?php else: ?> 
-                <p>No results found</p>
+<p class="no-results">No results found</p>
             <?php endif; ?>
   </div>
 
@@ -179,7 +185,9 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                         <?php 
                         foreach ($table2 as $item): ?>
                             <tr>
-                                <td> <?php echo '<a href="projectDetails.php?id='.$item['ProjectID'].'">info</a>'; ?> </td>
+                            <td> 
+    <?php echo '<a id="infoBtn" href="projectDetails.php?id='.$item['ProjectID'].'"><img src="images/info.png" alt="info" style="max-width: 30px; max-height: 30px;"></a>'; ?> 
+</td>
                                 <?php if($_SESSION['Type'] != 'Customer'): ?>
                                     <td><?php echo $item['Customer_Name']; ?></td>
                                     <td><?php echo $item['CustomerPhone']; ?></td>

@@ -41,7 +41,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) && $_SESSION['Typ
 <div class="container">
 <div class="header">
     <img src="images/logo_blank.png" alt="Logo" class="logo">
-    <h1 class="site-title">Add Payment</h1>
+    <h1 id="addPay" class="site-title">Add Payment</h1>
 </div>
 <form name="mainForm" action="addPayment.php" method="post">
         <div class="row mb-3 mx-3">

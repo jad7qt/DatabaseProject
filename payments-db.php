@@ -81,6 +81,7 @@ function getPrevPayments($UserID){
     INNER JOIN Project
     ON Payment.ProjectID = Project.ProjectID
     WHERE Project.CustomerID = :UserID;");
+
     $stmt->bindValue(':UserID', $UserID);
     $stmt->execute();
     $result = $stmt->fetchAll();
@@ -118,6 +119,25 @@ function addPaymentAdmin($projid, $type, $amount)
     $stmt2->bindValue(':date', $currenttime);
     $stmt2->execute();
     $stmt2->closeCursor();
+}
+
+function getNoInvoices(){
+    global $db;
+    $stmt = $db->prepare("SELECT CONCAT(User.FirstName, ' ', User.LastName) as Customer_Name,
+    Project.JobType, Project.StartDate, Project.EndDate, Invoice.TotalPrice
+    FROM Project
+    INNER JOIN Invoice
+    ON Invoice.ProjectID = Project.ProjectID
+    INNER JOIN User
+    ON User.UserID = Project.CustomerID
+    WHERE Invoice.TotalPrice IS NULL OR Invoice.ProjectID NOT IN (
+        SELECT Project.ProjectID
+        FROM Project)");
+
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $result;
 }
 
 ?>

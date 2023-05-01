@@ -9,7 +9,6 @@
   align-items: center;
   height: 250px;
 
-
 }
 
 /* Style for the search bar form */
@@ -60,4 +59,12 @@ label[for="occupation-type"] {
 #btnSearch:hover{
   background-color: #b6190b;
   color: white;
+}
+
+#infoBtn{
+  color:#7a1107;
+}
+
+#btnSearch{
+  margin: 0px;
 }

@@ -5,7 +5,7 @@ function getCustProjs($userID, $completed){
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Technician_Name, 
     CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address
     FROM Project
-    INNER JOIN User
+    LEFT JOIN User
     ON Project.TechnicianID = User.UserID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
@@ -34,7 +34,7 @@ function getTechProjs($userID){
     ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :techID and Project.completed = 'no'
+    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = :techID and Project.completed = 0
     ORDER BY Project.startDate
     LIMIT 3";
 
@@ -58,7 +58,7 @@ function getUnassigned(){
     ON PhoneNumber.userID = Project.customerID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE PhoneNumber.type = 'mobile' and Project.technicianID = NULL
+    WHERE PhoneNumber.type = 'mobile' and Project.technicianID IS NULL
     ORDER BY Project.startDate";
 
     $statement1 = $db->prepare($query1);

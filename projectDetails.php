@@ -114,7 +114,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             </tr>
         <tbody>
             <tr>
-                <td><?php echo $project['Technician_Name']; ?></td>
+                <td class="techNames"><b><?php echo '<a id="techName" href="profile.php?id='.$project['TechnicianID'].'">'.$project['Technician_Name'].'</a>'; ?></b></td>
                 <td><?php echo $project['Technician_Type']; ?></td>
             </tr>
         </tbody>
@@ -134,12 +134,13 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                 </tr>
             <tbody>
                 <?php foreach($comments as $item): ?>
+
                     <tr>
                         <td><?php echo $item['FullName']; ?></td>
                         <td><?php echo $item['Text']; ?> 
                         <?php if($item['UserID'] == $_SESSION['UserID'] || $_SESSION['Type'] == "Administrator"){ ?>
                             <form name="commentDeleteForm" action="projectDetails.php" method="post">
-                                <button style="float: right;" type="submit" class="btn btn-danger" name="actionBtn" value="deleteComment">Delete</button>
+                                <button style="float: right;" id="delBtn" type="submit" class="btn btn-danger" name="actionBtn" value="deleteComment">X</button>
                                 <input type="hidden" name="userid" value="<?php echo $item['UserID']; ?>" />
                                 <input type="hidden" name="datetime" value="<?php echo $item['DateTime']; ?>" />
                                 <input type="hidden" name="projid" value="<?php echo $item['ProjectID']; ?>" />
@@ -148,13 +149,15 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                         </td>
                         <td><?php echo $item['DateTime']; ?></td>
                     </tr>
+
+
                 <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>
-        <p>No comments found for project</p>
+        <p class="no-results">No comments found for project</p>
     <?php endif; ?>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal" id="btnAddComment" >
+    <button id="addCommentBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal" id="btnAddComment" >
         Add Comment
         </button>
 
@@ -226,7 +229,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
             </tbody>
         </table>
     <?php else: ?>
-        <p>No payments found for project</p>
+        <p class="no-results">No payments found for project</p>
     <?php endif; ?>
 </div>
 
