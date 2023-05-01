@@ -122,7 +122,8 @@ if ( (isset($_SESSION['UserID']) && isset($_SESSION['Username']))) {
 
         <div id="button-layout">
         <input id="buttonUpdateUser" type="submit" class="btn btn-primary" name="actionBtn" value="Update Profile" title="class to update existing customer" />
-        <button type="button" onclick="window.location.href='profile.php';" name="actionBtn" value="Back">Back</button>
+        <button id="backBtn" type="button" onclick="window.location.href='profile.php';" name="actionBtn" value="Back">Back</button>
+
         </div>
     </form>
 <!-- END FORM -->
