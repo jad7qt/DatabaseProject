@@ -206,7 +206,7 @@ if (isset($_SESSION['UserID']) && isset($_SESSION['Username']) ) {
                                 <?php elseif($_SESSION['Type'] == 'Technician'): ?>
                                     <td><?php echo "Accept Job" ?></td>
                                 <?php else: ?>
-                                    <td><?php echo "Assign Technician" ?></td>
+                                    <td><?php echo '<a href="assignTech.php?id='.$item['ProjectID'].'">Assign Technician</a>'; ?></td>
                                 <?php endif; ?>
                                 <td>
                                     <?php 
