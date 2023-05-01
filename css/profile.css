@@ -157,7 +157,15 @@
 }
 
 
-#rating {
+#text{
   color: black;
-  
+}
+
+
+#ratingNum{
+  margin-top: 50px;
+}
+
+#rating{
+  color: black;
 }
