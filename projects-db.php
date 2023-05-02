@@ -23,17 +23,17 @@ function adminMasterTable(){
 function techProjTable($userID){
     global $db;
     $query1 = "SELECT Project.*, CONCAT(User.firstName, ' ', User.lastName) as Customer_Name, 
-    CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address, 
+    CONCAT(Customer.Street, ' ', Customer.City, ', ', Customer.State, ' ', Customer.Zip) as Project_Address
     FROM Project
     INNER JOIN User
     ON Project.customerID = User.UserID
     INNER JOIN Customer
     ON Customer.UserID = Project.CustomerID
-    WHERE Project.technicianID = :userID
-    ORDER BY Project.startDate; ";
+    WHERE Project.technicianID = :techID and Project.completed = 0
+    ORDER BY Project.startDate";
 
     $statement1 = $db->prepare($query1);
-    $statement1->bindValue(':userID', $userID);
+    $statement1->bindValue(':techID', $userID);
     $statement1->execute();    
     $Projects = $statement1->fetchAll();
     $statement1->closeCursor();

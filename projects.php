@@ -96,7 +96,7 @@ elseif ($_SESSION['Type'] == 'Customer') {
                                         if ($item['Completed'] == "1") {
                                             echo '<img src="images/check.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         } else {
-                                            echo "Ongoing";
+                                            echo '<img src="images/ongoing.png" alt="Completed" style="max-width: 30px; max-height: 30px;">';
                                         }
                                     ?>
                                 </td>
